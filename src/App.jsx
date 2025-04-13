@@ -1,16 +1,18 @@
+import { Routes, Route } from 'react-router-dom';
+import OverviewPage from './pages/OverviewPage';
+
 function App() {
+  const content = (
+    <>
+      <div>Welcome to the home page</div>
+    </>
+  );
+
   return (
-    <div
-      style={{
-        minHeight: '100dvh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#eee',
-      }}
-    >
-      <h1>Welcome to the TrendTrack Web App</h1>
-    </div>
+    <Routes>
+      <Route path="/" element={content} />
+      <Route path="/dashboard" element={<OverviewPage />} />
+    </Routes>
   );
 }
 

@@ -7,9 +7,21 @@
 }
 
 :root {
-  --primary-color: #fff;
-  --secondary-color: #eee;
-  --general-color: #ddd;
+  --primary-color: #3b82f6;
+  --primary-hover: ;
+  --secondary-color: #4f46e5;
+  --accent-color: #34d399;
+  --warning-color: #f43f5e;
+  /* Light Mode Background */
+  --light-bg-color: #f9fafb;
+  --light-cards-color: #ffffff;
+  /* Light Mode Background */
+  --dark-bg-color: #0f172a;
+  --light-cards-color: #1e293b;
+  /* Text Colors */
+  --primary-txt-color: #111827;
+  --secondary-txt-color: #6b7280;
+  --light-mode-inverse: #f9fafb;
   --transition: 0.3s;
 }
 
