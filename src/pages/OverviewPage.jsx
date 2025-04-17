@@ -1,4 +1,4 @@
-import DashboardNavbar from '../components/dashboard-components/DashboardNavbar';
+import DashboardNavbar from '../components/dashboard-components/navbar/DashboardNavbar';
 import Overview from '../components/dashboard-components/overview';
 import Sidebar from '../components/dashboard-components/Sidebar';
 import { useAppState } from '../context/AppContext';
