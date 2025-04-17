@@ -1,30 +1,35 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Roboto:wght@400;500;700&display=swap');
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@import 'tailwindcss';
+
+@theme {
+  --color-blueberry: #4c7fff;
+  --color-purple: #a55eff;
+  --color-magenta: #f037ff;
+  --color-cyan: #32e8e8;
+  --color-btn-light: #f0eeff;
+  --color-btn-dark: #4d4b5f;
+  /* Light Theme colors */
+  --color-white: #ffffff;
+  --color-light: #edf4ff;
+  /* Dark theme colors */
+  --color-navy: #15223d;
+  --color-darkBluishGray: #2e334b;
+  /* Font sizes */
+  --text-large: 2rem;
+  --text-medium: 1.3125rem;
+  --text-small: 1.0625rem;
+  --text-xs: 0.9375rem;
 }
 
-:root {
-  --primary-color: #3b82f6;
-  --primary-hover: ;
-  --secondary-color: #4f46e5;
-  --accent-color: #34d399;
-  --warning-color: #f43f5e;
-  /* Light Mode Background */
-  --light-bg-color: #f9fafb;
-  --light-cards-color: #ffffff;
-  /* Light Mode Background */
-  --dark-bg-color: #0f172a;
-  --light-cards-color: #1e293b;
-  /* Text Colors */
-  --primary-txt-color: #111827;
-  --secondary-txt-color: #6b7280;
-  --light-mode-inverse: #f9fafb;
-  --transition: 0.3s;
-}
+/* 
+  Max-width of area content: 1624px
+  Sidebar width: 250px
+  The Margin from left and right: 20px
+  The space between sidebar and content: 30px
+  The gap between the sections & cards: 20px
+ */
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Mulish', sans-serif;
 }

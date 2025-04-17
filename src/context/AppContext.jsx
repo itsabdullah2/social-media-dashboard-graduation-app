@@ -3,7 +3,16 @@ import { createContext, useContext, useState } from 'react';
 const AppContext = createContext(null);
 
 export const AppProvider = ({ children }) => {
-  const values = {};
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const toggleDarkMode = () => {
+    setIsDarkMode((prev) => !prev);
+  };
+
+  const values = {
+    isDarkMode,
+    toggleDarkMode,
+  };
 
   return <AppContext.Provider value={values}>{children}</AppContext.Provider>;
 };

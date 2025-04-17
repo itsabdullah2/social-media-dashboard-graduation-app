@@ -1,16 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
 import OverviewPage from './pages/OverviewPage';
+import LandingPage from './pages/LandingPage';
 
 function App() {
-  const content = (
-    <>
-      <div>Welcome to the home page</div>
-    </>
-  );
-
   return (
     <Routes>
-      <Route path="/" element={content} />
+      <Route path="/" element={<LandingPage />} />
       <Route path="/dashboard" element={<OverviewPage />} />
     </Routes>
   );
