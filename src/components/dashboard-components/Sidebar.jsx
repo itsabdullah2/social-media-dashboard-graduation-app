@@ -82,7 +82,6 @@ const Sidebar = () => {
                   ? 'bg-gradient-to-r from-blueberry to-cyan text-white'
                   : ''
               }`}
-              onClick={() => handleActivePage(pathname)}
             >
               {item.icon}
               <Link to={item.path}>{item.label}</Link>
@@ -95,8 +94,12 @@ const Sidebar = () => {
           {sidebarItems.settings.map((item, i) => (
             <li
               key={i}
-              className={`flex items-center gap-2 ${
+              className={`flex items-center gap-2 py-1 px-2 rounded-md ${
                 isDarkMode ? 'text-white' : 'text-navy'
+              } ${
+                isActivePage === item.path
+                  ? 'bg-gradient-to-r from-blueberry to-cyan text-white'
+                  : ''
               } `}
             >
               {item.icon}
