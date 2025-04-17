@@ -1,0 +1,49 @@
+.activity-chart-container {
+  background: var(--main-color);
+  border-radius: 16px;
+  padding: 1rem;
+  font-family: sans-serif;
+  width: 400px;
+  max-width: 100%;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.chart-title {
+  font-size: 1rem;
+  color: var(--text-color);
+}
+
+.chart-filter {
+  font-size: 0.9rem;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.activity-chart-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.activity-legend {
+  list-style: none;
+  padding: 0;
+  margin-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.activity-legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
