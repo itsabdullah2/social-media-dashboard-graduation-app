@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 
-import StatsBox from "../../charts/statesBox/StatsBox";
-import ChartOverview from "../../charts/ChartOverview";
-import RevenueChart from "../../charts/RevenueChart";
+import StatsBox from '../charts/statesBox/StatsBox';
+import ChartOverview from '../charts/ChartOverview';
+import RevenueChart from '../charts/RevenueChart';
 
-import GenderChart from "../../charts/GenderCharts/GenderChart";
-import AgeChart from "../../charts/AgeChart/AgeChart";
-import ActivityChart from "../../charts/ActivityChart/ActivityChart";
+import GenderChart from '../charts/GenderCharts/GenderChart';
+import AgeChart from '../charts/AgeChart/AgeChart';
+import ActivityChart from '../charts/ActivityChart/ActivityChart';
 
 const followerData = [
   { value: 10 },
@@ -70,46 +70,46 @@ const sharesData = [
 
 const audienceData = [
   {
-    country: "DE",
-    flag: "./flags/germany.png",
+    country: 'DE',
+    flag: './flags/germany.png',
     subscribers: 5439,
     viewers: 7918,
-    dynamics: "+5.6%",
+    dynamics: '+5.6%',
   },
   {
-    country: "NL",
-    flag: "./flags/netherlands.png",
+    country: 'NL',
+    flag: './flags/netherlands.png',
     subscribers: 4211,
     viewers: 4682,
-    dynamics: "+0.9%",
+    dynamics: '+0.9%',
   },
   {
-    country: "UK",
-    flag: "./flags/unitedKingdom.png",
+    country: 'UK',
+    flag: './flags/unitedKingdom.png',
     subscribers: 4189,
     viewers: 6731,
-    dynamics: "+1.9%",
+    dynamics: '+1.9%',
   },
   {
-    country: "PL",
-    flag: "./flags/poland.png",
+    country: 'PL',
+    flag: './flags/poland.png',
     subscribers: 2671,
     viewers: 2980,
-    dynamics: "-1.2%",
+    dynamics: '-1.2%',
   },
   {
-    country: "BE",
-    flag: "./flags/belgium.png",
+    country: 'BE',
+    flag: './flags/belgium.png',
     subscribers: 1770,
     viewers: 2874,
-    dynamics: "+2.1%",
+    dynamics: '+2.1%',
   },
   {
-    country: "DK",
-    flag: "./flags/denmark.png",
+    country: 'DK',
+    flag: './flags/denmark.png',
     subscribers: 983,
     viewers: 990,
-    dynamics: "+0.1%",
+    dynamics: '+0.1%',
   },
 ];
 
@@ -185,9 +185,9 @@ const Overview = () => {
                       <td className="py-2">{row.viewers.toLocaleString()}</td>
                       <td
                         className={`py-2 ${
-                          row.dynamics.startsWith("+")
-                            ? "text-green-500"
-                            : "text-red-500"
+                          row.dynamics.startsWith('+')
+                            ? 'text-green-500'
+                            : 'text-red-500'
                         }`}
                       >
                         {row.dynamics}
