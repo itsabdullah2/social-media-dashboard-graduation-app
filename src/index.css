@@ -2,17 +2,13 @@
 
 @import 'tailwindcss';
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 @theme {
   --color-blueberry: #4c7fff;
   --color-purple: #a55eff;
   --color-magenta: #f037ff;
   --color-cyan: #32e8e8;
+  --color-btn-light: #f0eeff;
+  --color-btn-dark: #4d4b5f;
   /* Light Theme colors */
   --color-white: #ffffff;
   --color-light: #edf4ff;
@@ -36,4 +32,8 @@
 
 body {
   font-family: 'Mulish', sans-serif;
+}
+
+.gradient {
+  background-image: linear-gradient(135deg, #4c7fff, #32e8e8);
 }
