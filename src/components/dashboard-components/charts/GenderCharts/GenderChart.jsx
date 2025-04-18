@@ -1,6 +1,7 @@
 import React from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import "./gender.css";
+import { useAppState } from "../../../../context/AppContext";
 
 const data = [
   { name: "Women", value: 69, color: "#d047f1" },
@@ -8,8 +9,12 @@ const data = [
 ];
 
 function GenderChart() {
+  const { isDarkMode } = useAppState();
   return (
-    <div className="gender-chart-container">
+    <div
+      className="gender-chart-container"
+     
+    >
       <div className="chart-header">
         <h3 className="chart-title">Gender distribution</h3>
         <span className="chart-filter">Week ▼</span>
