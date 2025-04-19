@@ -6,7 +6,11 @@ const Root = ({ children }) => {
   const { isDarkMode } = useAppState();
 
   return (
-    <main className={`flex ${isDarkMode ? 'bg-navy' : 'bg-light'}`}>
+    <main
+      className={`flex ${
+        isDarkMode ? 'bg-navy' : 'bg-light'
+      } overflow-x-hidden`}
+    >
       <Sidebar />
       {children}
     </main>
