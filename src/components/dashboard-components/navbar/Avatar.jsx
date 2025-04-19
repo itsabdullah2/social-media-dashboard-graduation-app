@@ -38,14 +38,14 @@ const Avatar = () => {
           className="w-8 h-8 rounded-full object-cover"
         />
         <span
-          className={`text-sm font-medium ${
+          className={`text-sm font-medium hidden lg:block ${
             isDarkMode ? 'text-white' : 'text-navy'
           }`}
         >
           {user.name}
         </span>
         <LuChevronDown
-          className={`text-lg transition-transform text-navy ${
+          className={`text-lg transition-transform text-navy hidden lg:block ${
             open ? 'rotate-180' : ''
           } ${isDarkMode ? 'text-white' : 'text-navy'}`}
         />

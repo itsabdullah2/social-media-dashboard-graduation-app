@@ -39,7 +39,7 @@ const Dropdown = () => {
   const selectedOption = options.find((opt) => opt.name === selected);
 
   return (
-    <div className="relative w-56" ref={dropdownRef}>
+    <div className="relative w-40 lg:w-48 xl:w-56" ref={dropdownRef}>
       <button
         onClick={handleDropdownMenu}
         className={`w-full px-4 py-2 text-left hover:bg-blueberry/10 rounded-md duration-150 focus:outline-none flex items-center justify-between cursor-pointer ${
