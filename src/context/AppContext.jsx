@@ -4,14 +4,21 @@ const AppContext = createContext(null);
 
 export const AppProvider = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleDarkMode = () => {
     setIsDarkMode((prev) => !prev);
   };
 
+  const handleSidebar = () => {
+    setIsSidebarOpen((prev) => !prev);
+  };
+
   const values = {
     isDarkMode,
     toggleDarkMode,
+    isSidebarOpen,
+    handleSidebar,
   };
 
   return <AppContext.Provider value={values}>{children}</AppContext.Provider>;
