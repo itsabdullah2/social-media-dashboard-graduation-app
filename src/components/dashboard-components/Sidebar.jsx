@@ -16,7 +16,7 @@ const Sidebar = () => {
   const location = useLocation();
   const pathname = location.pathname;
   const [isActivePage, setIsActivePage] = useState(pathname);
-  const { isDarkMode, toggleDarkMode } = useAppState();
+  const { isDarkMode, toggleDarkMode, isSidebarOpen } = useAppState();
 
   useEffect(() => {
     setIsActivePage(pathname);
@@ -59,7 +59,7 @@ const Sidebar = () => {
     <aside
       className={`w-[250px] sticky h-dvh ${
         isDarkMode ? 'bg-darkBluishGray' : 'bg-white'
-      } flex flex-col py-5 px-4 top-0 left-0`}
+      } flex flex-col py-5 px-4 ${isSidebarOpen ? 'hidden' : ''} top-0`}
     >
       <h2
         className={`text-medium font-bold ${
