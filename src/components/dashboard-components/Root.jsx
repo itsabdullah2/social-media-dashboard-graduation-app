@@ -1,14 +1,15 @@
 import React from 'react';
-import DashboardNavbar from './DashboardNavbar';
 import Sidebar from './Sidebar';
+import { useAppState } from '../../context/AppContext';
 
 const Root = ({ children }) => {
+  const { isDarkMode } = useAppState();
+
   return (
-    <>
-      <DashboardNavbar />
-      {children}
+    <main className={`flex ${isDarkMode ? 'bg-navy' : 'bg-light'}`}>
       <Sidebar />
-    </>
+      {children}
+    </main>
   );
 };
 
