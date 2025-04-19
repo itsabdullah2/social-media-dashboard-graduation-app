@@ -8,6 +8,7 @@ import {
   ResponsiveContainer,
   CartesianGrid,
 } from "recharts";
+import { useAppState } from "../../../../context/AppContext";
 
 const data = [
   { month: "Jan", reached: 17500, engaged: 8000 },
@@ -25,6 +26,7 @@ const data = [
 ];
 
 const ChartOverview = () => {
+  const { isDarkMode } = useAppState();
   return (
     <div className="w-full">
       <h3 className="text-lg font-semibold mb-2">Overview</h3>
@@ -37,7 +39,7 @@ const ChartOverview = () => {
         </span>
       </div>
 
-      <div className="w-[350px] sm:w-full h-[340px]">
+      <div className="w-[350px] sm:w-full h-[340px] ">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart
             data={data}
@@ -55,13 +57,16 @@ const ChartOverview = () => {
             </defs>
 
             <CartesianGrid vertical={false} strokeDasharray="3 3" />
-            <XAxis dataKey="month" tick={{ fill: "var(--text-color)" }} />
+            <XAxis
+              dataKey="month"
+              tick={{ fill: isDarkMode ? "var(--color-white)" : "#000000" }}
+            />
             <YAxis
               domain={[5000, 30000]}
               ticks={[5000, 10000, 15000, 20000, 25000, 30000]}
               interval={0}
               tickFormatter={(val) => `${val / 1000}k`}
-              tick={{ fill: "var(--text-color)" }}
+              tick={{ fill: isDarkMode ? "var(--color-white)" : "#000000" }}
             />
             <Tooltip
               formatter={(value) => value.toLocaleString()}

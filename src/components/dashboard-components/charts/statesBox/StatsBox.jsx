@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./StatsBox.css";
 import { ResponsiveContainer, AreaChart, Area } from "recharts";
-
-
+import { useAppState } from "../../../../context/AppContext";
 
 const fillGradientId = `chartFillGradient-${Math.random()
   .toString(36)
@@ -19,9 +18,17 @@ const StatsBox = ({
   chartData = [],
 }) => {
   const hasData = chartData && chartData.length > 0;
-
+  const { isDarkMode } = useAppState();
   return (
-    <div className="stats-box">
+    <div
+      className="stats-box"
+      style={{
+        backgroundColor: isDarkMode
+          ? "var(--color-darkBluishGray)"
+          : "var(--color-white)",
+        color: isDarkMode ? "var(--color-white)" : "#000000",
+      }}
+    >
       <div className="stats-box-top-row">
         <span className="stats-box-title">{title}</span>
         <span className="stats-box-timespan">
