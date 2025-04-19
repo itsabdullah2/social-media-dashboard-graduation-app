@@ -8,10 +8,13 @@ const Notifications = () => {
   return (
     <div className="relative">
       <span className="absolute top-0 right-0 w-2 h-2 bg-red-600 rounded-full" />
-      <IoMdNotificationsOutline
-        size={25}
-        className={`${isDarkMode ? 'text-white' : 'text-navy'}`}
-      />
+      <button
+        className={`${
+          isDarkMode ? 'text-white' : 'text-navy'
+        } cursor-pointer flex items-center`}
+      >
+        <IoMdNotificationsOutline size={25} />
+      </button>
     </div>
   );
 };
