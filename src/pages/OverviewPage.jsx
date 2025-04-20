@@ -9,9 +9,7 @@ const OverviewPage = () => {
   return (
     <Root>
       <div
-        className={`flex flex-col w-[1624px] ${
-          isSidebarOpen ? 'mx-auto px-3 md:px-5 xl:px-8' : 'mx-8'
-        } gap-5`}
+        className={`flex flex-col w-full max-w-[1624px] mx-auto px-3 md:px-5 xl:px-8 gap-5`}
       >
         <DashboardNavbar />
         <Overview />
