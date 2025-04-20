@@ -7,9 +7,9 @@ const Root = ({ children }) => {
 
   return (
     <main
-      className={`flex ${
+      className={`flex min-h-screen overflow-hidden ${
         isDarkMode ? 'bg-navy' : 'bg-light'
-      } overflow-x-hidden`}
+      }`}
     >
       <Sidebar />
       {children}
