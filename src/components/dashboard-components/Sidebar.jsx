@@ -9,6 +9,7 @@ import {
   LuMoon,
   LuSunMedium,
 } from 'react-icons/lu';
+import { MdOutlineKeyboardDoubleArrowLeft } from 'react-icons/md';
 import { Link, useLocation } from 'react-router-dom';
 import { useAppState } from '../../context/AppContext';
 
@@ -16,7 +17,8 @@ const Sidebar = () => {
   const location = useLocation();
   const pathname = location.pathname;
   const [isActivePage, setIsActivePage] = useState(pathname);
-  const { isDarkMode, toggleDarkMode, isSidebarOpen } = useAppState();
+  const { isDarkMode, toggleDarkMode, isSidebarOpen, handleSidebar } =
+    useAppState();
 
   useEffect(() => {
     setIsActivePage(pathname);
@@ -57,9 +59,9 @@ const Sidebar = () => {
 
   return (
     <aside
-      className={`w-[250px] sticky h-dvh ${
+      className={`w-[250px] fixed lg:sticky top-0 h-screen z-10 ${
         isDarkMode ? 'bg-darkBluishGray' : 'bg-white'
-      } flex flex-col py-5 px-4 ${isSidebarOpen ? 'hidden' : ''} top-0`}
+      } flex flex-col py-5 px-4 ${isSidebarOpen ? 'hidden' : ''}`}
     >
       <h2
         className={`text-medium font-bold ${
@@ -129,6 +131,17 @@ const Sidebar = () => {
           </>
         )}{' '}
         mode
+      </button>
+      {/* Close Sidebar Button */}
+      <button
+        className={`absolute top-5 -right-3 p-1 rounded-full flex items-center cursor-pointer lg:hidden ${
+          isDarkMode
+            ? 'bg-btn-dark text-white'
+            : 'bg-btn-light text-darkBluishGray'
+        }`}
+        onClick={handleSidebar}
+      >
+        <MdOutlineKeyboardDoubleArrowLeft size={20} />
       </button>
     </aside>
   );
