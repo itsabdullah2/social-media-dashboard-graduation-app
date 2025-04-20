@@ -14,11 +14,20 @@ export const AppProvider = ({ children }) => {
     setIsSidebarOpen((prev) => !prev);
   };
 
+  const handleSystemTheme = () => {
+    const systemPrefersDark = window.matchMedia(
+      '(prefers-color-scheme: dark)'
+    ).matches;
+    setIsDarkMode(systemPrefersDark);
+  };
+
   const values = {
     isDarkMode,
     toggleDarkMode,
     isSidebarOpen,
+    setIsDarkMode,
     handleSidebar,
+    handleSystemTheme,
   };
 
   return <AppContext.Provider value={values}>{children}</AppContext.Provider>;
