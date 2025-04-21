@@ -1,13 +1,12 @@
-import React from "react";
+import Audience from '../charts/Audience/Audience';
+import StatesComponent from '../charts/statesBox/StatesComponent';
+import ActivityComponent from '../charts/ActivityChart/ActivityComponent';
+import RevenueComponent from '../charts/RevenueChart/RevenueComponent';
+import OverviewComponent from '../charts/overviewChart/OverviewComponent';
+import AgeComponent from '../charts/AgeChart/AgeComponent';
+import GenderComponent from '../charts/GenderCharts/GenderComponent';
+import ShedulePosts from '../charts/SchedulePosts/ShedulePosts';
 
-import Audience from "../charts/Audience/Audience";
-import StatesComponent from "../charts/statesBox/StatesComponent";
-import ActivityComponent from "../charts/ActivityChart/ActivityComponent";
-import RevenueComponent from "../charts/RevenueChart/RevenueComponent";
-import OverviewComponent from "../charts/overviewChart/OverviewComponent";
-import AgeComponent from "../charts/AgeChart/AgeComponent";
-import GenderComponent from "../charts/GenderCharts/GenderComponent";
-import ShedulePosts from "../charts/SchedulePosts/ShedulePosts";
 const Overview = () => {
   return (
     <div>

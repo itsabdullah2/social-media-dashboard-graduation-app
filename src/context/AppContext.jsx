@@ -5,6 +5,11 @@ const AppContext = createContext(null);
 export const AppProvider = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [posts, setPosts] = useState([]);
+  const [postTitle, setPostTitle] = useState('');
+  const [postDescription, setPostDescription] = useState('');
+  const [postTime, setPostTime] = useState('');
 
   const toggleDarkMode = () => {
     setIsDarkMode((prev) => !prev);
@@ -14,11 +19,38 @@ export const AppProvider = ({ children }) => {
     setIsSidebarOpen((prev) => !prev);
   };
 
+  const handleSystemTheme = () => {
+    const systemPrefersDark = window.matchMedia(
+      '(prefers-color-scheme: dark)'
+    ).matches;
+    setIsDarkMode(systemPrefersDark);
+  };
+
+  const handleOpenPopup = () => {
+    setIsPopupOpen(true);
+  };
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
+
   const values = {
     isDarkMode,
     toggleDarkMode,
     isSidebarOpen,
+    isPopupOpen,
+    posts,
+    postTitle,
+    postDescription,
+    postTime,
+    setPosts,
+    setPostTitle,
+    setPostDescription,
+    setPostTime,
+    setIsDarkMode,
     handleSidebar,
+    handleSystemTheme,
+    handleOpenPopup,
+    handleClosePopup,
   };
 
   return <AppContext.Provider value={values}>{children}</AppContext.Provider>;

@@ -43,7 +43,10 @@ const SearchBar = () => {
       >
         <LuSearch size={22} />
       </button>
-      <LuSearch size={22} className="hidden lg:block" />
+      <LuSearch
+        size={22}
+        className={`hidden lg:block ${isDarkMode ? 'text-white' : 'text-navy'}`}
+      />
       <input
         type="search"
         name="search"
