@@ -21,7 +21,7 @@ const Settings = () => {
   const { isDarkMode, handleSidebar } = useAppState();
 
   return (
-    <section className={`mx-auto px-3 md:px-5 xl:px-8 max-w-[1624px]`}>
+    <section className={`mx-auto px-3 md:px-5 xl:px-8 max-w-[1624px] flex-1`}>
       <div className="flex flex-col gap-8">
         {/* Render Navigation Bar */}
         <nav className="flex items-center justify-between py-5">
