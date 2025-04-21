@@ -6,7 +6,7 @@ const SchedulePage = () => {
   return (
     <Root>
       <div
-        className={`flex flex-col w-full max-w-[1624px] mx-auto px-3 md:px-5 xl:px-8 gap-5`}
+        className={`flex flex-col flex-1 max-w-[1624px] mx-auto px-3 md:px-5 xl:px-8 gap-5`}
       >
         <DashboardNavbar />
         <Schedule />
