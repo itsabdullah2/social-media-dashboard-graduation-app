@@ -1,21 +1,28 @@
 /**
  * This Component will return:
- * 1. The planed posts with as cards [, ]
- * 1.1 The card will render the post:
- * 1.1.1 The post image [, ]
- * 1.1.2 The post title [, ]
- * 1.1.3 The post description [, ]
- * 1.1.4 The post date [, ]
- * 1.1.5 Two btns one for editing the post and the other for deleting the post [, ]
+ * 1. The planed posts will be rendered as cards [, ]
  * 2. Popup to add a post [, ]
- * 3. Navbar that contains two btns one for adding a post and the other for deleting all posts [, ]
+ * 3. Navbar that contains two btns one for adding a post and the other for deleting all posts [done, ]
  */
 
+import ActionNav from './ActionNav';
+import PostsList from './PostsList';
+import { useAppState } from '../../../context/AppContext';
+import Popup from './popup/Popup';
+
 const Schedule = () => {
+  const { isDarkMode, isPopupOpen } = useAppState();
+
   return (
-    <div className={`mx-auto px-3 md:px-5 xl:px-8 max-w-[1624px] flex-1`}>
-      Schedule
-    </div>
+    <section
+      className={`w-full flex flex-col gap-5 min-h-full ${
+        isDarkMode ? 'bg-darkBluishGray' : 'bg-white'
+      } py-5 px-3 rounded-xl`}
+    >
+      <ActionNav />
+      <PostsList />
+      {isPopupOpen && <Popup />}
+    </section>
   );
 };
 
