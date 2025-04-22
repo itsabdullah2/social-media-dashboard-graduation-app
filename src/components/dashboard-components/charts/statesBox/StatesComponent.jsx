@@ -1,5 +1,5 @@
-import React from "react";
-import StatsBox from "./StatsBox";
+import React from 'react';
+import StatsBox from './StatsBox';
 const followerData = [
   { value: 10 },
   { value: 15 },
@@ -59,37 +59,35 @@ const sharesData = [
 
 function StatesComponent() {
   return (
-    <div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols- lg:grid-cols-4 gap-4 my-[1rem]">
-        <StatsBox
-          title="Followers"
-          number="19 654"
-          percentage="- 5%"
-          percentageColor="#ff0000"
-          chartData={followerData}
-        />
-        <StatsBox
-          title="Likes"
-          number="4 820"
-          percentage="+ 12%"
-          percentageColor="#34d399"
-          chartData={revenueData}
-        />
-        <StatsBox
-          title="Comments"
-          number="5 541"
-          percentage="+ 2%"
-          percentageColor="#34d399"
-          chartData={errorData}
-        />
-        <StatsBox
-          title="Shares"
-          number="1 234"
-          percentage="+ 8%"
-          percentageColor="#34d399"
-          chartData={sharesData}
-        />
-      </div>
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <StatsBox
+        title="Followers"
+        number="19 654"
+        percentage="- 5%"
+        percentageColor="#ff0000"
+        chartData={followerData}
+      />
+      <StatsBox
+        title="Likes"
+        number="4 820"
+        percentage="+ 12%"
+        percentageColor="#34d399"
+        chartData={revenueData}
+      />
+      <StatsBox
+        title="Comments"
+        number="5 541"
+        percentage="+ 2%"
+        percentageColor="#34d399"
+        chartData={errorData}
+      />
+      <StatsBox
+        title="Shares"
+        number="1 234"
+        percentage="+ 8%"
+        percentageColor="#34d399"
+        chartData={sharesData}
+      />
     </div>
   );
 }
