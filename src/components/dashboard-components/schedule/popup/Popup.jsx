@@ -25,16 +25,43 @@ const Popup = () => {
     postDescription,
     postTime,
     setPosts,
+    setPostTitle,
+    setPostDescription,
+    setPostTime,
+    postImage,
   } = useAppState();
 
   const handleCreatePost = () => {
     const postData = {
-      postTitle,
-      postDescription,
-      postTime,
+      title: postTitle,
+      description: postDescription,
+      time: postTime,
+      image: postImage,
     };
-    setPosts((prevPosts) => [...prevPosts, postData]);
 
+    if (
+      postTitle === '' ||
+      postDescription === '' ||
+      postTime === '' ||
+      postImage === null
+    ) {
+      return;
+    } else {
+      setPosts((prevPosts) => [...prevPosts, postData]);
+    }
+
+    handleCleanFields();
+    handleClosePopup();
+  };
+
+  const handleCleanFields = () => {
+    setPostTitle('');
+    setPostDescription('');
+    setPostTime('');
+  };
+
+  const handleCancel = () => {
+    handleCleanFields();
     handleClosePopup();
   };
 
@@ -57,7 +84,7 @@ const Popup = () => {
           className={`${commonStyles} border-blueberry hover:bg-blueberry ${
             isDarkMode ? 'text-white' : 'text-navy hover:text-white'
           }`}
-          onClick={handleClosePopup}
+          onClick={handleCancel}
         >
           Cancel
         </button>
@@ -68,6 +95,7 @@ const Popup = () => {
           Create
         </button>
       </div>
+
       <button
         className={`absolute top-2.5 right-2.5 text-sm cursor-pointer ${
           isDarkMode

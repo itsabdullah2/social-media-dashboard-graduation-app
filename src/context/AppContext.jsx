@@ -6,10 +6,12 @@ export const AppProvider = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+
   const [posts, setPosts] = useState([]);
   const [postTitle, setPostTitle] = useState('');
   const [postDescription, setPostDescription] = useState('');
   const [postTime, setPostTime] = useState('');
+  const [postImage, setPostImage] = useState(null);
 
   const toggleDarkMode = () => {
     setIsDarkMode((prev) => !prev);
@@ -42,10 +44,12 @@ export const AppProvider = ({ children }) => {
     postTitle,
     postDescription,
     postTime,
+    postImage,
     setPosts,
     setPostTitle,
     setPostDescription,
     setPostTime,
+    setPostImage,
     setIsDarkMode,
     handleSidebar,
     handleSystemTheme,
