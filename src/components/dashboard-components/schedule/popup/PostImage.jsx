@@ -1,7 +1,21 @@
+import { useState } from 'react';
 import { useAppState } from '../../../../context/AppContext';
 
 const PostImage = () => {
-  const { isDarkMode } = useAppState();
+  const [filename, setFilename] = useState('Add Image');
+  const { isDarkMode, setPostImage } = useAppState();
+
+  const handleImageChange = (e) => {
+    const image = e.target.files[0];
+
+    if (image) {
+      const imageName = image.name;
+      setFilename(imageName);
+
+      const tempUrl = URL.createObjectURL(image);
+      setPostImage(tempUrl);
+    }
+  };
 
   return (
     <div className="flex items-center gap-3">
@@ -18,9 +32,15 @@ const PostImage = () => {
           isDarkMode ? 'bg-navy text-white' : 'bg-light text-navy'
         } py-2 px-6 rounded-md border border-blueberry/40 active:border-blueberry hover:border-blueberry duration-200 cursor-pointer`}
       >
-        Add image
+        {filename}
       </label>
-      <input type="file" id="post-image" accept="image/*" className="hidden" />
+      <input
+        type="file"
+        id="post-image"
+        onChange={handleImageChange}
+        accept="image/*"
+        className="hidden"
+      />
     </div>
   );
 };
