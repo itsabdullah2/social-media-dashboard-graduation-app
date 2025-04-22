@@ -9,26 +9,20 @@ import ShedulePosts from '../charts/SchedulePosts/ShedulePosts';
 
 const Overview = () => {
   return (
-    <div>
-      <div className="container">
-        <StatesComponent />
-        <div className="grid grid-cols-1 sm:grid-cols-12 lg:grid-cols-12 gap-4 my-[1rem]">
-          <OverviewComponent />
+    <div className="">
+      <StatesComponent />
 
-          <Audience />
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+        <OverviewComponent />
+        <Audience />
+        <RevenueComponent />
+      </div>
 
-          <RevenueComponent />
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-[1rem]">
-          <GenderComponent />
-
-          <AgeComponent />
-
-          <ActivityComponent />
-
-          <ShedulePosts />
-        </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <GenderComponent />
+        <AgeComponent />
+        <ActivityComponent />
+        <ShedulePosts />
       </div>
     </div>
   );
