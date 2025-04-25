@@ -47,7 +47,7 @@ const audienceData = [
 function Audience() {
   const { isDarkMode } = useAppState();
   return (
-    <div className="">
+    <div className="xl:col-span-4">
       <div
         className="p-4 rounded-xl shadow-md h-full sm:w-full"
         style={{

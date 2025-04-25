@@ -5,9 +5,9 @@ import { useAppState } from '../../../../context/AppContext';
 function OverviewComponent() {
   const { isDarkMode } = useAppState();
   return (
-    <div className="">
+    <div className="xl:col-span-5">
       <div
-        className=" p-4 rounded-xl shadow-md h-full  sm:w-full"
+        className=" p-4 rounded-xl shadow-md h-full w-full sm:w-full"
         style={{
           backgroundColor: isDarkMode
             ? 'var(--color-darkBluishGray)'

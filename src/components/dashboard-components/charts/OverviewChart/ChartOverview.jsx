@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   AreaChart,
   Area,
@@ -7,22 +7,22 @@ import {
   YAxis,
   ResponsiveContainer,
   CartesianGrid,
-} from "recharts";
-import { useAppState } from "../../../../context/AppContext";
+} from 'recharts';
+import { useAppState } from '../../../../context/AppContext';
 
 const data = [
-  { month: "Jan", reached: 17500, engaged: 8000 },
-  { month: "Feb", reached: 18500, engaged: 9500 },
-  { month: "Mar", reached: 19000, engaged: 10500 },
-  { month: "Apr", reached: 21000, engaged: 12000 },
-  { month: "May", reached: 22816, engaged: 13500 },
-  { month: "Jun", reached: 23500, engaged: 14000 },
-  { month: "Jul", reached: 24000, engaged: 14500 },
-  { month: "Agu", reached: 27000, engaged: 20000 },
-  { month: "Sep", reached: 25500, engaged: 18000 },
-  { month: "Oct", reached: 25800, engaged: 16000 },
-  { month: "Nov", reached: 25900, engaged: 15000 },
-  { month: "Dec", reached: 26000, engaged: 16500 },
+  { month: 'Jan', reached: 17500, engaged: 8000 },
+  { month: 'Feb', reached: 18500, engaged: 9500 },
+  { month: 'Mar', reached: 19000, engaged: 10500 },
+  { month: 'Apr', reached: 21000, engaged: 12000 },
+  { month: 'May', reached: 22816, engaged: 13500 },
+  { month: 'Jun', reached: 23500, engaged: 14000 },
+  { month: 'Jul', reached: 24000, engaged: 14500 },
+  { month: 'Agu', reached: 27000, engaged: 20000 },
+  { month: 'Sep', reached: 25500, engaged: 18000 },
+  { month: 'Oct', reached: 25800, engaged: 16000 },
+  { month: 'Nov', reached: 25900, engaged: 15000 },
+  { month: 'Dec', reached: 26000, engaged: 16500 },
 ];
 
 const ChartOverview = () => {
@@ -39,7 +39,7 @@ const ChartOverview = () => {
         </span>
       </div>
 
-      <div className="w-[350px] sm:w-full h-[340px] ">
+      <div className="w-full h-[340px] ">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart
             data={data}
@@ -59,19 +59,19 @@ const ChartOverview = () => {
             <CartesianGrid vertical={false} strokeDasharray="3 3" />
             <XAxis
               dataKey="month"
-              tick={{ fill: isDarkMode ? "var(--color-white)" : "#000000" }}
+              tick={{ fill: isDarkMode ? 'var(--color-white)' : '#000000' }}
             />
             <YAxis
               domain={[5000, 30000]}
               ticks={[5000, 10000, 15000, 20000, 25000, 30000]}
               interval={0}
               tickFormatter={(val) => `${val / 1000}k`}
-              tick={{ fill: isDarkMode ? "var(--color-white)" : "#000000" }}
+              tick={{ fill: isDarkMode ? 'var(--color-white)' : '#000000' }}
             />
             <Tooltip
               formatter={(value) => value.toLocaleString()}
-              labelStyle={{ fontWeight: "bold" }}
-              itemStyle={{ color: "#000" }}
+              labelStyle={{ fontWeight: 'bold' }}
+              itemStyle={{ color: '#000' }}
             />
             <Area
               type="monotone"
