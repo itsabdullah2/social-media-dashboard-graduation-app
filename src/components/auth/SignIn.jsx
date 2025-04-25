@@ -2,17 +2,32 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useAppState } from '../../context/AppContext';
+import { signInWithEmail } from './S_auth';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
   const { isDarkMode } = useAppState();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate('/onboarding');
+    setLoading(true);
+    setError('');
+    
+    try {
+      const data = await signInWithEmail(email, password);
+      console.log('Login successful:', data);
+      navigate('/dashboard');
+    } catch (err) {
+      console.error('Login error:', err);
+      setError(err.message || 'Failed to sign in. Please check your credentials.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -97,6 +112,7 @@ const SignIn = () => {
                       isDarkMode ? 'text-white' : 'text-navy'
                     } focus:outline-none placeholder:duration-200 focus:placeholder:opacity-0`}
                     placeholder="Enter your password"
+                    
                   />
                   <button
                     type="button"
@@ -137,10 +153,15 @@ const SignIn = () => {
 
               <button
                 type="submit"
-                className={`w-full bg-blueberry/80 text-white py-3 rounded-lg font-medium hover:bg-blueberry duration-200 cursor-pointer`}
+                disabled={loading}
+                className={`w-full bg-blueberry/80 text-white py-3 rounded-lg font-medium hover:bg-blueberry duration-200 cursor-pointer ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
               >
-                Sign In
+                {loading ? 'Signing In...' : 'Sign In'}
               </button>
+
+              {error && (
+                <p className="text-red-500 text-sm text-center">{error}</p>
+              )}
 
               <button
                 type="button"
