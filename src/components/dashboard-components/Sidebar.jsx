@@ -58,92 +58,99 @@ const Sidebar = () => {
   };
 
   return (
-    <aside
-      className={`w-[250px] fixed lg:sticky top-0 h-screen z-10 ${
-        isDarkMode ? 'bg-darkBluishGray' : 'bg-white'
-      } flex flex-col py-5 px-4 ${isSidebarOpen ? 'hidden' : ''}`}
+    <div
+      className={`grid lg:grid-cols-[250px_1fr] ${
+        isSidebarOpen ? 'hidden' : ''
+      }`}
     >
-      <h2
-        className={`text-medium font-bold ${
-          isDarkMode ? 'text-light' : 'text-navy'
-        } text-center mb-20`}
+      {/* Sidebar (fixed, h-dvh, toggle support) */}
+      <aside
+        className={`w-[250px] fixed top-0 left-0 h-dvh z-10 ${
+          isDarkMode ? 'bg-darkBluishGray' : 'bg-white'
+        } flex flex-col py-5 px-4 transition-transform duration-300`}
       >
-        TrendTrack
-      </h2>
+        <h2
+          className={`text-medium font-bold ${
+            isDarkMode ? 'text-light' : 'text-navy'
+          } text-center mb-20`}
+        >
+          TrendTrack
+        </h2>
 
-      <section className="flex-1">
-        {/* Pages */}
-        <ul className="flex flex-col gap-5 mb-10 pb-10 border-b border-light">
-          {sidebarItems.pages.map((item, i) => (
-            <li
-              key={i}
-              className={`flex items-center gap-2 py-1 px-2 rounded-md ${
-                isDarkMode ? 'text-white' : 'text-navy'
-              } ${
-                isActivePage === item.path
-                  ? 'bg-gradient-to-r from-blueberry to-cyan text-white'
-                  : ''
-              }`}
-            >
-              {item.icon}
-              <Link to={item.path}>{item.label}</Link>
-            </li>
-          ))}
-        </ul>
+        <section className="flex-1">
+          {/* Pages */}
+          <ul className="flex flex-col gap-5 mb-10 pb-10 border-b border-light">
+            {sidebarItems.pages.map((item, i) => (
+              <li
+                key={i}
+                className={`flex items-center gap-2 py-1 px-2 rounded-md ${
+                  isDarkMode ? 'text-white' : 'text-navy'
+                } ${
+                  isActivePage === item.path
+                    ? 'bg-gradient-to-r from-blueberry to-cyan text-white'
+                    : ''
+                }`}
+              >
+                {item.icon}
+                <Link to={item.path}>{item.label}</Link>
+              </li>
+            ))}
+          </ul>
 
-        {/* Settings */}
-        <ul className="flex flex-col gap-6">
-          {sidebarItems.settings.map((item, i) => (
-            <li
-              key={i}
-              className={`flex items-center gap-2 py-1 px-2 rounded-md ${
-                isDarkMode ? 'text-white' : 'text-navy'
-              } ${
-                isActivePage === item.path
-                  ? 'bg-gradient-to-r from-blueberry to-cyan text-white'
-                  : ''
-              } `}
-            >
-              {item.icon}
-              <Link to={item.path}>{item.label}</Link>
-            </li>
-          ))}
-        </ul>
-      </section>
+          {/* Settings */}
+          <ul className="flex flex-col gap-6">
+            {sidebarItems.settings.map((item, i) => (
+              <li
+                key={i}
+                className={`flex items-center gap-2 py-1 px-2 rounded-md ${
+                  isDarkMode ? 'text-white' : 'text-navy'
+                } ${
+                  isActivePage === item.path
+                    ? 'bg-gradient-to-r from-blueberry to-cyan text-white'
+                    : ''
+                } `}
+              >
+                {item.icon}
+                <Link to={item.path}>{item.label}</Link>
+              </li>
+            ))}
+          </ul>
+        </section>
 
-      <button
-        className={`${
-          isDarkMode
-            ? 'bg-btn-dark text-white'
-            : 'bg-btn-light text-darkBluishGray'
-        } py-3 px-8 rounded-full w-fit mx-auto font-medium text-xs flex items-center gap-2 cursor-pointer`}
-        onClick={toggleDarkMode}
-      >
-        {isDarkMode ? (
-          <>
-            <LuSunMedium size={20} />
-            Light
-          </>
-        ) : (
-          <>
-            <LuMoon size={20} />
-            Dark
-          </>
-        )}{' '}
-        mode
-      </button>
-      {/* Close Sidebar Button */}
-      <button
-        className={`absolute top-5 -right-3 p-1 rounded-full flex items-center cursor-pointer lg:hidden ${
-          isDarkMode
-            ? 'bg-btn-dark text-white'
-            : 'bg-btn-light text-darkBluishGray'
-        }`}
-        onClick={handleSidebar}
-      >
-        <MdOutlineKeyboardDoubleArrowLeft size={20} />
-      </button>
-    </aside>
+        <button
+          className={`${
+            isDarkMode
+              ? 'bg-btn-dark text-white'
+              : 'bg-btn-light text-darkBluishGray'
+          } py-3 px-8 rounded-full w-fit mx-auto font-medium text-xs flex items-center gap-2 cursor-pointer`}
+          onClick={toggleDarkMode}
+        >
+          {isDarkMode ? (
+            <>
+              <LuSunMedium size={20} />
+              Light
+            </>
+          ) : (
+            <>
+              <LuMoon size={20} />
+              Dark
+            </>
+          )}{' '}
+          mode
+        </button>
+        {/* Close Sidebar Button */}
+        <button
+          className={`absolute top-5 -right-3 p-1 rounded-full flex items-center cursor-pointer lg:hidden ${
+            isDarkMode
+              ? 'bg-btn-dark text-white'
+              : 'bg-btn-light text-darkBluishGray'
+          }`}
+          onClick={handleSidebar}
+        >
+          <MdOutlineKeyboardDoubleArrowLeft size={20} />
+        </button>
+      </aside>
+    </div>
   );
 };
 
