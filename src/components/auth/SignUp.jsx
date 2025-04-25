@@ -3,19 +3,34 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FaUser, FaEye, FaEyeSlash } from 'react-icons/fa';
 import { IoMdMail, IoIosLock } from 'react-icons/io';
 import { useAppState } from '../../context/AppContext';
+import { signUpWithEmail } from './S_auth';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const { isDarkMode } = useAppState();
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    navigate('/onboarding');
+    setLoading(true);
+    setError('');
+    
+    try {
+      const data = await signUpWithEmail(email, password);
+      console.log('Signup successful:', data);
+      navigate('/signin');
+    } catch (err) {
+      console.error('Signup error:', err);
+      setError(err.message || 'Failed to sign up. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -125,6 +140,7 @@ const SignUp = () => {
                       isDarkMode ? 'text-white' : 'text-navy'
                     } focus:outline-none placeholder:duration-200 focus:placeholder:opacity-0`}
                     placeholder="Enter your password"
+                    
                   />
                   <button
                     type="button"
@@ -146,10 +162,15 @@ const SignUp = () => {
 
               <button
                 type="submit"
-                className={`w-full bg-blueberry/80 text-white py-3 rounded-lg font-medium hover:bg-blueberry duration-200 cursor-pointer`}
+                disabled={loading}
+                className={`w-full bg-blueberry/80 text-white py-3 rounded-lg font-medium hover:bg-blueberry duration-200 cursor-pointer ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
               >
-                Create Account
+                {loading ? 'Creating Account...' : 'Create Account'}
               </button>
+
+              {error && (
+                <p className="text-red-500 text-sm text-center">{error}</p>
+              )}
 
               <button
                 type="button"
