@@ -1,5 +1,5 @@
-import React from 'react';
-import StatsBox from './StatsBox';
+import React from "react";
+import StatsBox from "./StatsBox";
 const followerData = [
   { value: 10 },
   { value: 15 },
@@ -59,7 +59,7 @@ const sharesData = [
 
 function StatesComponent() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="flex flex-wrap gap-4 w-full">
       <StatsBox
         title="Followers"
         number="19 654"

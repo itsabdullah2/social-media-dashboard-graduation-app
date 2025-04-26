@@ -6,7 +6,7 @@ function ShedulePosts() {
   return (
     <div>
       <div
-        className=" p-4 rounded-xl shadow-md h-full w-full"
+        className="p-4 rounded-xl shadow-md h-[300px] w-full"
         style={{
           backgroundColor: isDarkMode
             ? "var(--color-darkBluishGray)"

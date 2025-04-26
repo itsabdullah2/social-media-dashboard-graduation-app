@@ -7,7 +7,7 @@ function GenderComponent() {
   return (
     <div className="flex sm:justify-start">
       <div
-        className="p-4 rounded-xl shadow-md h-full w-[300px] sm:w-full"
+        className="p-4 rounded-xl shadow-md h-[300px] w-full"
         style={{
           backgroundColor: isDarkMode
             ? "var(--color-darkBluishGray)"

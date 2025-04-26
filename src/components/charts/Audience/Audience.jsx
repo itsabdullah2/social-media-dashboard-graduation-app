@@ -49,7 +49,7 @@ function Audience() {
   return (
     <div className="xl:col-span-4">
       <div
-        className="p-4 rounded-xl shadow-md h-full sm:w-full"
+        className="p-4 rounded-xl shadow-md h-[400px] w-full"
         style={{
           backgroundColor: isDarkMode
             ? 'var(--color-darkBluishGray)'
@@ -75,7 +75,7 @@ function Audience() {
           <tbody>
             {audienceData.map((row, index) => (
               <tr key={index} className="border-b">
-                <td className="flex items-center gap-2 py-2">
+                <td className="flex items-center gap-2 py-3">
                   <img src={row.flag} alt="" className="w-5 h-5" />
                   {row.country}
                 </td>
