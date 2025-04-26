@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
-import "./StatsBox.css";
-import { ResponsiveContainer, AreaChart, Area } from "recharts";
-import { useAppState } from "../../../../context/AppContext";
+import React, { useContext } from 'react';
+import './StatsBox.css';
+import { ResponsiveContainer, AreaChart, Area } from 'recharts';
+import { useAppState } from '../../../context/AppContext';
 
 const fillGradientId = `chartFillGradient-${Math.random()
   .toString(36)
@@ -14,7 +14,7 @@ const StatsBox = ({
   title,
   number,
   percentage,
-  percentageColor = "#f87171",
+  percentageColor = '#f87171',
   chartData = [],
 }) => {
   const hasData = chartData && chartData.length > 0;
@@ -24,9 +24,9 @@ const StatsBox = ({
       className="stats-box"
       style={{
         backgroundColor: isDarkMode
-          ? "var(--color-darkBluishGray)"
-          : "var(--color-white)",
-        color: isDarkMode ? "var(--color-white)" : "#000000",
+          ? 'var(--color-darkBluishGray)'
+          : 'var(--color-white)',
+        color: isDarkMode ? 'var(--color-white)' : '#000000',
       }}
     >
       <div className="stats-box-top-row">
@@ -63,14 +63,14 @@ const StatsBox = ({
                     <stop
                       offset="0%"
                       style={{
-                        stopColor: "rgba(163, 127, 240, 0.5)",
+                        stopColor: 'rgba(163, 127, 240, 0.5)',
                         stopOpacity: 0.8,
                       }}
                     />
                     <stop
                       offset="100%"
                       style={{
-                        stopColor: "rgba(70, 190, 224, 0.1)",
+                        stopColor: 'rgba(70, 190, 224, 0.1)',
                         stopOpacity: 0.1,
                       }}
                     />
@@ -82,8 +82,8 @@ const StatsBox = ({
                     x2="100%"
                     y2="0%"
                   >
-                    <stop offset="0%" style={{ stopColor: "#a37ff0" }} />
-                    <stop offset="100%" style={{ stopColor: "#46bee0" }} />
+                    <stop offset="0%" style={{ stopColor: '#a37ff0' }} />
+                    <stop offset="100%" style={{ stopColor: '#46bee0' }} />
                   </linearGradient>
                 </defs>
 
@@ -101,7 +101,7 @@ const StatsBox = ({
             </ResponsiveContainer>
           ) : (
             <div
-              style={{ textAlign: "center", color: "#ccc", fontSize: "12px" }}
+              style={{ textAlign: 'center', color: '#ccc', fontSize: '12px' }}
             >
               No data
             </div>
