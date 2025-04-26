@@ -1,6 +1,5 @@
 import { supabase } from './supabase';
 
-
 export const signUpWithEmail = async (email, password) => {
   const { data, error } = await supabase.auth.signUp({ email, password });
   if (error) throw error;
@@ -8,7 +7,10 @@ export const signUpWithEmail = async (email, password) => {
 };
 
 export const signInWithEmail = async (email, password) => {
-  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
   if (error) throw error;
   return data;
 };
@@ -19,10 +21,9 @@ export const signOut = async () => {
 };
 
 export const signInWithOAuth = async () => {
-    const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-      })
-      if (error) throw error;
-      return data;
-} 
-
+  const { user, error } = await supabase.auth.signInWithOAuth({
+    provider: 'google',
+  });
+  if (error) throw error;
+  return user;
+};
