@@ -2,12 +2,13 @@ import React, { useState, useRef, useEffect } from 'react';
 import { LuChevronDown } from 'react-icons/lu';
 import { useAppState } from '../../../context/AppContext';
 import { signOut } from '../../auth/S_auth';
-import { redirect } from 'react-router-dom';
+import { redirect, useNavigate } from 'react-router-dom';
 
 const Avatar = () => {
   const { isDarkMode } = useAppState();
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const navigate = useNavigate();
 
   const user = {
     name: 'Abdullah',
@@ -28,9 +29,9 @@ const Avatar = () => {
     setOpen((prev) => !prev);
   };
 
-  const handleLogout = async () => {
-    await signOut();
-    redirect('/signup');
+  const handleLogout = () => {
+    signOut();
+    navigate('/');
   };
 
   return (
@@ -65,8 +66,7 @@ const Avatar = () => {
           </div>
           <button
             onClick={handleLogout}
-            className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
-            
+            className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 cursor-pointer"
           >
             Logout
           </button>

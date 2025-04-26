@@ -10,11 +10,13 @@ import {
   LuSunMedium,
 } from 'react-icons/lu';
 import { MdOutlineKeyboardDoubleArrowLeft } from 'react-icons/md';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAppState } from '../../context/AppContext';
+import { signOut } from '../auth/S_auth';
 
 const Sidebar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const pathname = location.pathname;
   const [isActivePage, setIsActivePage] = useState(pathname);
   const { isDarkMode, toggleDarkMode, isSidebarOpen, handleSidebar } =
@@ -55,6 +57,11 @@ const Sidebar = () => {
       },
       { label: 'logout', path: '/logout', icon: <LuLogOut size={19} /> },
     ],
+  };
+
+  const handleLogout = () => {
+    signOut();
+    navigate('/');
   };
 
   return (
@@ -99,21 +106,28 @@ const Sidebar = () => {
 
           {/* Settings */}
           <ul className="flex flex-col gap-6">
-            {sidebarItems.settings.map((item, i) => (
-              <li
-                key={i}
-                className={`flex items-center gap-2 py-1 px-2 rounded-md ${
-                  isDarkMode ? 'text-white' : 'text-navy'
-                } ${
-                  isActivePage === item.path
-                    ? 'bg-gradient-to-r from-blueberry to-cyan text-white'
-                    : ''
-                } `}
-              >
-                {item.icon}
-                <Link to={item.path}>{item.label}</Link>
-              </li>
-            ))}
+            <li
+              className={`flex items-center gap-2 py-1 px-2 rounded-md ${
+                isDarkMode ? 'text-white' : 'text-navy'
+              } ${
+                isActivePage === '/dashboard/settings'
+                  ? 'bg-gradient-to-r from-blueberry to-cyan text-white'
+                  : ''
+              } `}
+            >
+              <LuSettings size={19} />
+              <Link to={'/dashboard/settings'}>Settings</Link>
+            </li>
+            <li
+              className={`flex items-center gap-2 py-1 px-2 rounded-md ${
+                isDarkMode ? 'text-white' : 'text-navy'
+              } cursor-pointer`}
+            >
+              <LuLogOut size={19} />
+              <button className="cursor-pointer" onClick={handleLogout}>
+                Logout
+              </button>
+            </li>
           </ul>
         </section>
 
