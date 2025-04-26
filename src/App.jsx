@@ -1,6 +1,6 @@
-import { Routes, Route } from 'react-router-dom';
-import OverviewPage from './pages/OverviewPage';
-import LandingPage from './pages/LandingPage';
+import { Routes, Route } from "react-router-dom";
+import OverviewPage from "./pages/OverviewPage";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
   return (
