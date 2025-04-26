@@ -30,7 +30,13 @@ const Navbar = () => {
         ))}
       </ul>
 
-      <Link to="/dashboard">Try it now</Link>
+      {/* Style the text of the link as gradient */}
+      <Link
+        to="/signin"
+        className={`text-medium font-bold bg-gradient-to-r from-blueberry to-cyan text-transparent bg-clip-text`}
+      >
+        Try it now
+      </Link>
     </nav>
   );
 };
