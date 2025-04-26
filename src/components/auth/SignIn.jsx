@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useAppState } from '../../context/AppContext';
-import { signInWithEmail } from './S_auth';
+import { signInWithEmail, signInWithOAuth } from './S_auth';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -17,14 +17,15 @@ const SignIn = () => {
     e.preventDefault();
     setLoading(true);
     setError('');
-    
+
     try {
-      const data = await signInWithEmail(email, password);
-      console.log('Login successful:', data);
+      await signInWithEmail(email, password);
       navigate('/dashboard');
     } catch (err) {
       console.error('Login error:', err);
-      setError(err.message || 'Failed to sign in. Please check your credentials.');
+      setError(
+        err.message || 'Failed to sign in. Please check your credentials.'
+      );
     } finally {
       setLoading(false);
     }
@@ -112,7 +113,6 @@ const SignIn = () => {
                       isDarkMode ? 'text-white' : 'text-navy'
                     } focus:outline-none placeholder:duration-200 focus:placeholder:opacity-0`}
                     placeholder="Enter your password"
-                    
                   />
                   <button
                     type="button"
@@ -154,7 +154,9 @@ const SignIn = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className={`w-full bg-blueberry/80 text-white py-3 rounded-lg font-medium hover:bg-blueberry duration-200 cursor-pointer ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                className={`w-full bg-blueberry/80 text-white py-3 rounded-lg font-medium hover:bg-blueberry duration-200 cursor-pointer ${
+                  loading ? 'opacity-70 cursor-not-allowed' : ''
+                }`}
               >
                 {loading ? 'Signing In...' : 'Sign In'}
               </button>
