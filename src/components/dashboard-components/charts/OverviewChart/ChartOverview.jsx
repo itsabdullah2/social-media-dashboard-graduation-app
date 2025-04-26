@@ -39,7 +39,7 @@ const ChartOverview = () => {
         </span>
       </div>
 
-      <div className="w-[350px] sm:w-full h-[340px] ">
+      <div className="w-full h-[300px] ">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart
             data={data}

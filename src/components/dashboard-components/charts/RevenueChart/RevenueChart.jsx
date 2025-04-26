@@ -47,7 +47,7 @@ const RevenueChart = () => {
         </span>
       </div>
 
-      <ResponsiveContainer width="100%" height={300}>
+      <ResponsiveContainer width="100%" height={340}>
         <BarChart data={data} barSize={30}>
           <CartesianGrid vertical={false} strokeDasharray="3 3" />
           <XAxis

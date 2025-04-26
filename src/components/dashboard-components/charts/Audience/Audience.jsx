@@ -1,60 +1,60 @@
-import React from "react";
-import { useAppState } from "../../../../context/AppContext";
+import React from 'react';
+import { useAppState } from '../../../../context/AppContext';
 const audienceData = [
   {
-    country: "DE",
-    flag: "./flags/germany.png",
+    country: 'DE',
+    flag: './flags/germany.png',
     subscribers: 5439,
     viewers: 7918,
-    dynamics: "+5.6%",
+    dynamics: '+5.6%',
   },
   {
-    country: "NL",
-    flag: "./flags/netherlands.png",
+    country: 'NL',
+    flag: './flags/netherlands.png',
     subscribers: 4211,
     viewers: 4682,
-    dynamics: "+0.9%",
+    dynamics: '+0.9%',
   },
   {
-    country: "UK",
-    flag: "./flags/unitedKingdom.png",
+    country: 'UK',
+    flag: './flags/unitedKingdom.png',
     subscribers: 4189,
     viewers: 6731,
-    dynamics: "+1.9%",
+    dynamics: '+1.9%',
   },
   {
-    country: "PL",
-    flag: "./flags/poland.png",
+    country: 'PL',
+    flag: './flags/poland.png',
     subscribers: 2671,
     viewers: 2980,
-    dynamics: "-1.2%",
+    dynamics: '-1.2%',
   },
   {
-    country: "BE",
-    flag: "./flags/belgium.png",
+    country: 'BE',
+    flag: './flags/belgium.png',
     subscribers: 1770,
     viewers: 2874,
-    dynamics: "+2.1%",
+    dynamics: '+2.1%',
   },
   {
-    country: "DK",
-    flag: "./flags/denmark.png",
+    country: 'DK',
+    flag: './flags/denmark.png',
     subscribers: 983,
     viewers: 990,
-    dynamics: "+0.1%",
+    dynamics: '+0.1%',
   },
 ];
 function Audience() {
   const { isDarkMode } = useAppState();
   return (
-    <div className="lg:col-span-4 md:col-span-6 w-full flex md:justify-start">
+    <div className="xl:col-span-4">
       <div
-        className="p-4 rounded-xl shadow-md h-full w-[400px] sm:w-full"
+        className="p-4 rounded-xl shadow-md h-[400px] w-full"
         style={{
           backgroundColor: isDarkMode
-            ? "var(--color-darkBluishGray)"
-            : "var(--color-white)",
-          color: isDarkMode ? "var(--color-white)" : "#000000",
+            ? 'var(--color-darkBluishGray)'
+            : 'var(--color-white)',
+          color: isDarkMode ? 'var(--color-white)' : '#000000',
         }}
       >
         <div className="flex justify-between items-center mb-4">
@@ -75,7 +75,7 @@ function Audience() {
           <tbody>
             {audienceData.map((row, index) => (
               <tr key={index} className="border-b">
-                <td className="flex items-center gap-2 py-2">
+                <td className="flex items-center gap-2 py-3">
                   <img src={row.flag} alt="" className="w-5 h-5" />
                   {row.country}
                 </td>
@@ -83,9 +83,9 @@ function Audience() {
                 <td className="py-2">{row.viewers.toLocaleString()}</td>
                 <td
                   className={`py-2 ${
-                    row.dynamics.startsWith("+")
-                      ? "text-green-500"
-                      : "text-red-500"
+                    row.dynamics.startsWith('+')
+                      ? 'text-green-500'
+                      : 'text-red-500'
                   }`}
                 >
                   {row.dynamics}
