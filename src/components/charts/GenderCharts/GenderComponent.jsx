@@ -1,6 +1,6 @@
-import React from "react";
-import GenderChart from "./GenderChart";
-import { useAppState } from "../../../../context/AppContext";
+import React from 'react';
+import GenderChart from './GenderChart';
+import { useAppState } from '../../../context/AppContext';
 
 function GenderComponent() {
   const { isDarkMode } = useAppState();
@@ -10,9 +10,9 @@ function GenderComponent() {
         className="p-4 rounded-xl shadow-md h-[300px] w-full"
         style={{
           backgroundColor: isDarkMode
-            ? "var(--color-darkBluishGray)"
-            : "var(--color-white)",
-          color: isDarkMode ? "var(--color-white)" : "#000000",
+            ? 'var(--color-darkBluishGray)'
+            : 'var(--color-white)',
+          color: isDarkMode ? 'var(--color-white)' : '#000000',
         }}
       >
         <GenderChart />

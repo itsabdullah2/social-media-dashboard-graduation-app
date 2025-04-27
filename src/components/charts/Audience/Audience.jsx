@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAppState } from '../../../../context/AppContext';
+import { useAppState } from '../../../context/AppContext';
 const audienceData = [
   {
     country: 'DE',
