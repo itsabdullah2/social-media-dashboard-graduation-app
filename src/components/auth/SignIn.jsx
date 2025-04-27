@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useAppState } from '../../context/AppContext';
-import { signInWithEmail, signInWithOAuth } from './S_auth';
+import { signInWithEmail } from './S_auth';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
