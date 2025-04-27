@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   BarChart,
   Bar,
@@ -9,16 +9,16 @@ import {
   ResponsiveContainer,
   CartesianGrid,
   Legend,
-} from "recharts";
-import { useAppState } from "../../../../context/AppContext";
+} from 'recharts';
+import { useAppState } from '../../../context/AppContext';
 
 const data = [
-  { month: "Jan", revenue: 2200, avgViewer: 500 },
-  { month: "Feb", revenue: 1800, avgViewer: 1000 },
-  { month: "Mar", revenue: 2197, avgViewer: 1500 },
-  { month: "Apr", revenue: 2500, avgViewer: 1800 },
-  { month: "May", revenue: 1600, avgViewer: 2000 },
-  { month: "Jun", revenue: 2100, avgViewer: 2200 },
+  { month: 'Jan', revenue: 2200, avgViewer: 500 },
+  { month: 'Feb', revenue: 1800, avgViewer: 1000 },
+  { month: 'Mar', revenue: 2197, avgViewer: 1500 },
+  { month: 'Apr', revenue: 2500, avgViewer: 1800 },
+  { month: 'May', revenue: 1600, avgViewer: 2000 },
+  { month: 'Jun', revenue: 2100, avgViewer: 2200 },
 ];
 
 const RevenueChart = () => {
@@ -28,21 +28,21 @@ const RevenueChart = () => {
       className="chart-container"
       style={{
         backgroundColor: isDarkMode
-          ? "var(--color-darkBluishGray)"
-          : "var(--color-white)",
-        color: isDarkMode ? "var(--color-white)" : "#000000",
+          ? 'var(--color-darkBluishGray)'
+          : 'var(--color-white)',
+        color: isDarkMode ? 'var(--color-white)' : '#000000',
       }}
     >
       <div
         className="chart-header"
         style={{
-          display: "flex",
-          gap: "10px",
-          color: isDarkMode ? "var(--color-white)" : "#000000",
+          display: 'flex',
+          gap: '10px',
+          color: isDarkMode ? 'var(--color-white)' : '#000000',
         }}
       >
         <h3 className="chart-title">Revenue</h3>
-        <span className="chart-filter" style={{ background: "transparent" }}>
+        <span className="chart-filter" style={{ background: 'transparent' }}>
           Year ▼
         </span>
       </div>
@@ -52,17 +52,17 @@ const RevenueChart = () => {
           <CartesianGrid vertical={false} strokeDasharray="3 3" />
           <XAxis
             dataKey="month"
-            tick={{ fill: isDarkMode ? "var(--color-white)" : "#000000" }}
+            tick={{ fill: isDarkMode ? 'var(--color-white)' : '#000000' }}
           />
           <YAxis
             domain={[500, 3000]}
-            tick={{ fill: isDarkMode ? "var(--color-white)" : "#000000" }}
+            tick={{ fill: isDarkMode ? 'var(--color-white)' : '#000000' }}
             tickCount={6}
           />
           <Tooltip
             formatter={(value) => value.toLocaleString()}
-            labelStyle={{ fontWeight: "bold" }}
-            itemStyle={{ color: "#000" }}
+            labelStyle={{ fontWeight: 'bold' }}
+            itemStyle={{ color: '#000' }}
           />
           <Bar
             dataKey="revenue"

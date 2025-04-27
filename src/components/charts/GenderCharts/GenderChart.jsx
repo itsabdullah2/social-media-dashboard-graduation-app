@@ -1,27 +1,24 @@
-import React from "react";
-import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
-import "./gender.css";
-import { useAppState } from "../../../../context/AppContext";
+import React from 'react';
+import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
+import './gender.css';
+import { useAppState } from '../../../context/AppContext';
 
 const data = [
-  { name: "Women", value: 69, color: "#d047f1" },
-  { name: "Men", value: 28, color: "#5b6fe6" },
+  { name: 'Women', value: 69, color: '#d047f1' },
+  { name: 'Men', value: 28, color: '#5b6fe6' },
 ];
 
 function GenderChart() {
   const { isDarkMode } = useAppState();
   return (
-    <div
-      className="gender-chart-container"
-     
-    >
+    <div className="gender-chart-container">
       <div className="chart-header">
         <h3 className="chart-title">Gender distribution</h3>
         <span className="chart-filter">Week ▼</span>
       </div>
 
       <div className="gender-chart-body">
-        <div style={{ position: "relative", width: "60%", height: 200 }}>
+        <div style={{ position: 'relative', width: '60%', height: 200 }}>
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie

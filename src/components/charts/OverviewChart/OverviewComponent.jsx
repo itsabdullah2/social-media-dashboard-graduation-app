@@ -1,6 +1,6 @@
 import React from "react";
 import ChartOverview from "./ChartOverview";
-import { useAppState } from "../../../../context/AppContext";
+import { useAppState } from "../../../context/AppContext";
 
 function OverviewComponent() {
   const { isDarkMode } = useAppState();

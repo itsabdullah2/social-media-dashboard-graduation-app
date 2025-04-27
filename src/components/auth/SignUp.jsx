@@ -8,7 +8,7 @@ import { signUpWithEmail } from './S_auth';
 const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
+  const [username, setUsername] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -20,9 +20,9 @@ const SignUp = () => {
     e.preventDefault();
     setLoading(true);
     setError('');
-    
+
     try {
-      const data = await signUpWithEmail(email, password);
+      const data = await signUpWithEmail(email, password, username);
       console.log('Signup successful:', data);
       navigate('/signin');
     } catch (err) {
@@ -85,8 +85,8 @@ const SignUp = () => {
                 <input
                   type="text"
                   required
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   className={`w-full px-4 py-3 ${
                     isDarkMode ? 'bg-navy' : 'bg-light'
                   } rounded-lg ${
@@ -140,7 +140,6 @@ const SignUp = () => {
                       isDarkMode ? 'text-white' : 'text-navy'
                     } focus:outline-none placeholder:duration-200 focus:placeholder:opacity-0`}
                     placeholder="Enter your password"
-                    
                   />
                   <button
                     type="button"
@@ -163,7 +162,9 @@ const SignUp = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className={`w-full bg-blueberry/80 text-white py-3 rounded-lg font-medium hover:bg-blueberry duration-200 cursor-pointer ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                className={`w-full bg-blueberry/80 text-white py-3 rounded-lg font-medium hover:bg-blueberry duration-200 cursor-pointer ${
+                  loading ? 'opacity-70 cursor-not-allowed' : ''
+                }`}
               >
                 {loading ? 'Creating Account...' : 'Create Account'}
               </button>
