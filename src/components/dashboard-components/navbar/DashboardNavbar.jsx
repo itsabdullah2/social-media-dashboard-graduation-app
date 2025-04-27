@@ -1,3 +1,4 @@
+import { useSession } from '@supabase/auth-helpers-react';
 import { useAppState } from '../../../context/AppContext';
 import Avatar from './Avatar';
 import Dropdown from './Dropdown';
@@ -7,6 +8,8 @@ import { LuMenu } from 'react-icons/lu';
 
 const DashboardNavbar = () => {
   const { isDarkMode, handleSidebar, isSidebarOpen } = useAppState();
+  const session = useSession();
+  const username = session?.user?.user_metadata?.username;
 
   return (
     <nav className={`flex items-center justify-between py-5`}>
@@ -27,7 +30,7 @@ const DashboardNavbar = () => {
           }
           ${isSidebarOpen ? 'lg: xl:text-large 2xl:' : 'lg: 2xl:text-large'}`}
         >
-          Hello Abdullah
+          Hello {username.charAt(0).toUpperCase() + username.slice(1)}
         </h1>
       </div>
 
