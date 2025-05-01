@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   BarChart,
   Bar,
@@ -8,21 +8,27 @@ import {
   Tooltip,
   ResponsiveContainer,
   CartesianGrid,
-  Legend,
 } from 'recharts';
 import { useAppState } from '../../../context/AppContext';
-
-const data = [
-  { month: 'Jan', revenue: 2200, avgViewer: 500 },
-  { month: 'Feb', revenue: 1800, avgViewer: 1000 },
-  { month: 'Mar', revenue: 2197, avgViewer: 1500 },
-  { month: 'Apr', revenue: 2500, avgViewer: 1800 },
-  { month: 'May', revenue: 1600, avgViewer: 2000 },
-  { month: 'Jun', revenue: 2100, avgViewer: 2200 },
-];
+import { supabase } from '../../auth/supabase';
 
 const RevenueChart = () => {
   const { isDarkMode } = useAppState();
+  const [revenueData, setRevenueData] = useState([]);
+
+  useEffect(() => {
+    async function fetchRevenueData() {
+      try {
+        const { data, error } = await supabase.from('revenue_data').select('*');
+        setRevenueData(data);
+      } catch (error) {
+        console.error('Error fetching revenue data', error);
+      }
+    }
+
+    fetchRevenueData();
+  }, []);
+
   return (
     <div
       className="chart-container"
@@ -48,7 +54,7 @@ const RevenueChart = () => {
       </div>
 
       <ResponsiveContainer width="100%" height={340}>
-        <BarChart data={data} barSize={30}>
+        <BarChart data={revenueData} barSize={30}>
           <CartesianGrid vertical={false} strokeDasharray="3 3" />
           <XAxis
             dataKey="month"

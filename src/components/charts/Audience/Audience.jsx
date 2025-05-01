@@ -1,51 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { supabase } from '../../../components/auth/supabase';
 import { useAppState } from '../../../context/AppContext';
-const audienceData = [
-  {
-    country: 'DE',
-    flag: './flags/germany.png',
-    subscribers: 5439,
-    viewers: 7918,
-    dynamics: '+5.6%',
-  },
-  {
-    country: 'NL',
-    flag: './flags/netherlands.png',
-    subscribers: 4211,
-    viewers: 4682,
-    dynamics: '+0.9%',
-  },
-  {
-    country: 'UK',
-    flag: './flags/unitedKingdom.png',
-    subscribers: 4189,
-    viewers: 6731,
-    dynamics: '+1.9%',
-  },
-  {
-    country: 'PL',
-    flag: './flags/poland.png',
-    subscribers: 2671,
-    viewers: 2980,
-    dynamics: '-1.2%',
-  },
-  {
-    country: 'BE',
-    flag: './flags/belgium.png',
-    subscribers: 1770,
-    viewers: 2874,
-    dynamics: '+2.1%',
-  },
-  {
-    country: 'DK',
-    flag: './flags/denmark.png',
-    subscribers: 983,
-    viewers: 990,
-    dynamics: '+0.1%',
-  },
-];
+
 function Audience() {
   const { isDarkMode } = useAppState();
+  const [audienceData, setAudienceData] = useState([]);
+
+  useEffect(() => {
+    async function fetchAudienceData() {
+      const { data, error } = await supabase.from('audience_data').select('*');
+      if (error) {
+        console.error('Error fetching audience data', error);
+      } else {
+        setAudienceData(data);
+      }
+    }
+
+    fetchAudienceData();
+  }, []);
+
   return (
     <div className="xl:col-span-4">
       <div
@@ -73,8 +46,8 @@ function Audience() {
             </tr>
           </thead>
           <tbody>
-            {audienceData.map((row, index) => (
-              <tr key={index} className="border-b">
+            {audienceData.map((row) => (
+              <tr key={row.id} className="border-b">
                 <td className="flex items-center gap-2 py-3">
                   <img src={row.flag} alt="" className="w-5 h-5" />
                   {row.country}
