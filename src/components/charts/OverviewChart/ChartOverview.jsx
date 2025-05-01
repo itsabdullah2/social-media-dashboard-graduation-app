@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   AreaChart,
   Area,
@@ -9,24 +9,27 @@ import {
   CartesianGrid,
 } from 'recharts';
 import { useAppState } from '../../../context/AppContext';
-
-const data = [
-  { month: 'Jan', reached: 17500, engaged: 8000 },
-  { month: 'Feb', reached: 18500, engaged: 9500 },
-  { month: 'Mar', reached: 19000, engaged: 10500 },
-  { month: 'Apr', reached: 21000, engaged: 12000 },
-  { month: 'May', reached: 22816, engaged: 13500 },
-  { month: 'Jun', reached: 23500, engaged: 14000 },
-  { month: 'Jul', reached: 24000, engaged: 14500 },
-  { month: 'Agu', reached: 27000, engaged: 20000 },
-  { month: 'Sep', reached: 25500, engaged: 18000 },
-  { month: 'Oct', reached: 25800, engaged: 16000 },
-  { month: 'Nov', reached: 25900, engaged: 15000 },
-  { month: 'Dec', reached: 26000, engaged: 16500 },
-];
+import { supabase } from '../../auth/supabase';
 
 const ChartOverview = () => {
   const { isDarkMode } = useAppState();
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    async function fetchOverviewData() {
+      try {
+        const { data, error } = await supabase
+          .from('overview_data')
+          .select('*');
+        setData(data);
+      } catch (error) {
+        console.error('Error fetching overview data', error);
+      }
+    }
+
+    fetchOverviewData();
+  }, []);
+
   return (
     <div className="w-full">
       <h3 className="text-lg font-semibold mb-2">Overview</h3>
