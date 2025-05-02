@@ -30,7 +30,7 @@ const DashboardNavbar = () => {
           }
           ${isSidebarOpen ? 'lg: xl:text-large 2xl:' : 'lg: 2xl:text-large'}`}
         >
-          Hello {username.charAt(0).toUpperCase() + username.slice(1)}
+          Hello {username?.charAt(0).toUpperCase() + username?.slice(1)}
         </h1>
       </div>
 

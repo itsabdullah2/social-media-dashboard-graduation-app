@@ -74,7 +74,7 @@ const Sidebar = () => {
       <aside
         className={`w-[250px] fixed top-0 left-0 h-dvh z-10 ${
           isDarkMode ? 'bg-darkBluishGray' : 'bg-white'
-        } flex flex-col py-5 px-4 transition-transform duration-300`}
+        } flex flex-col py-5 px-4 transition-transform duration-300 shadow-md lg:shadow-none`}
       >
         <h2
           className={`text-medium font-bold ${

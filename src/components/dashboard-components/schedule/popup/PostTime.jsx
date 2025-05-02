@@ -1,10 +1,10 @@
-import { useAppState } from '../../../../context/AppContext';
+import { useAppState } from "../../../../context/AppContext";
 
 const PostTime = () => {
-  const { isDarkMode, postTime, setPostTime } = useAppState();
+  const { isDarkMode, postDateTime, setPostDateTime } = useAppState();
 
-  const handleTimeChange = (e) => {
-    setPostTime(e.target.value);
+  const handleDateTimeChange = (e) => {
+    setPostDateTime(e.target.value);
   };
 
   return (
@@ -12,18 +12,18 @@ const PostTime = () => {
       <label
         htmlFor="post-title"
         className={`basis-24 ${
-          isDarkMode ? 'text-white' : 'text-navy'
+          isDarkMode ? "text-white" : "text-navy"
         } text-small font-medium`}
       >
         Time
       </label>
       <input
-        type="time"
+        type="datetime-local"
         id="post-time"
-        value={postTime}
-        onChange={handleTimeChange}
+        value={postDateTime ?? ""}
+        onChange={handleDateTimeChange}
         className={`${
-          isDarkMode ? 'bg-navy text-white' : 'bg-light text-navy'
+          isDarkMode ? "bg-navy text-white" : "bg-light text-navy"
         } py-2 px-3 rounded-md focus:outline-none focus:placeholder:opacity-0 placeholder:duration-200 border border-blueberry/40 focus:border-blueberry`}
       />
     </div>
