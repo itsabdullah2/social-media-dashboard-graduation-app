@@ -12,8 +12,6 @@ const Avatar = () => {
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
 
-  console.log(user);
-
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
