@@ -1,7 +1,7 @@
 import { useAppState } from '../../../context/AppContext';
 
 const commonStyles =
-  'w-32 rounded-md border hover:bg-blueberry duration-200 py-1 lg:py-2 text-small font-medium cursor-pointer';
+  'w-32 rounded-md border duration-200 py-1 lg:py-2 text-small font-medium cursor-pointer';
 
 const ActionNav = () => {
   const { isDarkMode, handleOpenPopup } = useAppState();
@@ -19,7 +19,7 @@ const ActionNav = () => {
       </button>
       <button
         onClick={handleOpenPopup}
-        className={`${commonStyles} border-blueberry/80 hover:border-blueberry bg-blueberry/80 text-white`}
+        className={`${commonStyles} border-blueberry/80 bg-light text-blueberry`}
       >
         Create post
       </button>
