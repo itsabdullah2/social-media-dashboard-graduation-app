@@ -2,7 +2,7 @@ import Audience from "../../charts/Audience/Audience";
 import StatesComponent from "../../charts/statesBox/StatesComponent";
 import ActivityComponent from "../../charts/ActivityChart/ActivityComponent";
 import RevenueComponent from "../../charts/RevenueChart/RevenueComponent";
-import OverviewComponent from "../../charts/overviewChart/OverviewComponent";
+import OverviewComponent from "../../charts/OverviewChart/OverviewComponent";
 import AgeComponent from "../../charts/AgeChart/AgeComponent";
 import GenderComponent from "../../charts/GenderCharts/GenderComponent";
 import SchedulePosts from "../../charts/SchedulePosts/SchedulePosts";
