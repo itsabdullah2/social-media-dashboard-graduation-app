@@ -58,7 +58,7 @@ const TryItNow = () => {
           </div>
           {/* Copyright text with centered alignment */}
           <div className="mt-8 text-center">
-            <p className={`text-base ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>&copy; 2025 TrendTrack. All rights reserved. CO founder Aubdallah Ali , Supervisor Eng. Hesham Mohamed</p>
+            <p className={`text-base ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`}>&copy; 2025 TrendTrack. All rights reserved. Coded by Abdullah's team</p>
           </div>
         </div>
       </footer>
