@@ -1,13 +1,14 @@
-import { useSession } from '@supabase/auth-helpers-react';
-import { useAppState } from '../../../context/AppContext';
-import Avatar from './Avatar';
-import Dropdown from './Dropdown';
-import Notifications from './Notifications';
-import SearchBar from './SearchBar';
-import { LuMenu } from 'react-icons/lu';
+import { useSession } from "@supabase/auth-helpers-react";
+import { useAppState } from "../../../context/AppContext";
+import Avatar from "./Avatar";
+import Dropdown from "./Dropdown";
+import Notifications from "./Notifications";
+import SearchBar from "./SearchBar";
+import { LuMenu } from "react-icons/lu";
 
 const DashboardNavbar = () => {
-  const { isDarkMode, handleSidebar, isSidebarOpen } = useAppState();
+  const { isDarkMode, handleSidebar, isSidebarOpen, businessName } =
+    useAppState();
   const session = useSession();
   const username = session?.user?.user_metadata?.username;
 
@@ -17,8 +18,8 @@ const DashboardNavbar = () => {
         <button
           className={`${
             isDarkMode
-              ? 'text-white/60 hover:text-white'
-              : 'text-navy/60 hover:text-navy'
+              ? "text-white/60 hover:text-white"
+              : "text-navy/60 hover:text-navy"
           } duration-200 cursor-pointer mr-3 lg:mr-0`}
           onClick={handleSidebar}
         >
@@ -26,26 +27,29 @@ const DashboardNavbar = () => {
         </button>
         <h1
           className={`hidden md:block text-small xl:text-medium font-medium ${
-            isDarkMode ? 'text-white' : 'text-navy'
+            isDarkMode ? "text-white" : "text-navy"
           }
-          ${isSidebarOpen ? 'lg: xl:text-large 2xl:' : 'lg: 2xl:text-large'}`}
+          ${isSidebarOpen ? "lg: xl:text-large 2xl:" : "lg: 2xl:text-large"}`}
         >
-          Hello {username?.charAt(0).toUpperCase() + username?.slice(1)}
+          Hello{" "}
+          {businessName
+            ? businessName
+            : username?.charAt(0).toUpperCase() + username?.slice(1)}
         </h1>
       </div>
 
       <div
         className={`flex items-center justify-between gap-5 ${
           isSidebarOpen
-            ? 'lg:gap-20 xl:gap-28 2xl:gap-32'
-            : 'lg:gap-6 2xl:gap-24'
+            ? "lg:gap-20 xl:gap-28 2xl:gap-32"
+            : "lg:gap-6 2xl:gap-24"
         }`}
       >
         <div
           className={`flex items-center flex-row-reverse lg:flex-row gap-5 ${
             isSidebarOpen
-              ? 'lg:gap-20 xl:gap-28 2xl:gap-32'
-              : 'lg:gap-6 2xl:gap-24'
+              ? "lg:gap-20 xl:gap-28 2xl:gap-32"
+              : "lg:gap-6 2xl:gap-24"
           }`}
         >
           <Dropdown />
