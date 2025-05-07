@@ -159,3 +159,54 @@ export const deleteSchedule = async (id) => {
     throw error;
   }
 };
+
+// CRUD of settings page
+export const getUserSettings = async (userId) => {
+  const { data, error } = await supabase
+    .from("user_settings")
+    .select("*")
+    .eq("id", userId)
+    .single();
+
+  if (error) {
+    console.error("Error fetching settings:", error);
+    return null;
+  }
+
+  return data;
+};
+
+export const createUserSettings = async ({
+  id,
+  username,
+  theme,
+  imageFile,
+}) => {
+  const avatar = await uploadImage(imageFile);
+
+  const { data, error } = await supabase
+    .from("user_settings")
+    .insert([{ id, username, theme, avatar }])
+    .select();
+
+  if (error) {
+    console.error("Error creating settings:", error);
+    return null;
+  }
+
+  return data;
+};
+
+export const updateUserSettings = async (userId, updates) => {
+  const { data, error } = await supabase
+    .from("user_settings")
+    .update(updates)
+    .eq("id", userId);
+
+  if (error) {
+    console.error("Error updating settings:", error.message);
+    return null;
+  }
+
+  return data;
+};
