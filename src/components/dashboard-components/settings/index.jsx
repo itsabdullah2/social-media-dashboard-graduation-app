@@ -8,17 +8,22 @@
  * 2.4 Logout [done, ]
  */
 
-import AccountState from './AccountState';
-import BusinessName from './BusinessName';
-import ImageUpload from './ImageUpload';
-import SelectTheme from './SelectTheme';
-import { useAppState } from '../../../context/AppContext';
-import Avatar from '../navbar/Avatar';
-import SearchBar from '../navbar/SearchBar';
-import { LuMenu } from 'react-icons/lu';
+import AccountState from "./AccountState";
+import BusinessName from "./BusinessName";
+import ImageUpload from "./ImageUpload";
+import SelectTheme from "./SelectTheme";
+import { useAppState } from "../../../context/AppContext";
+import Avatar from "../navbar/Avatar";
+import SearchBar from "../navbar/SearchBar";
+import { LuMenu } from "react-icons/lu";
 
 const Settings = () => {
-  const { isDarkMode, handleSidebar } = useAppState();
+  const { isDarkMode, handleSidebar, tempName, setBusinessName } =
+    useAppState();
+
+  const handleSave = () => {
+    setBusinessName(tempName);
+  };
 
   return (
     <section className={`mx-auto px-3 md:px-5 xl:px-8 max-w-[1624px] flex-1`}>
@@ -29,8 +34,8 @@ const Settings = () => {
             <button
               className={`${
                 isDarkMode
-                  ? 'text-white/60 hover:text-white'
-                  : 'text-navy/60 hover:text-navy'
+                  ? "text-white/60 hover:text-white"
+                  : "text-navy/60 hover:text-navy"
               } duration-200 cursor-pointer mr-3 lg:mr-0`}
               onClick={handleSidebar}
             >
@@ -44,19 +49,19 @@ const Settings = () => {
         <div className="">
           <h1
             className={`text-large font-medium ${
-              isDarkMode ? 'text-light' : 'text-navy'
+              isDarkMode ? "text-light" : "text-navy"
             }`}
           >
             Settings
           </h1>
-          <p className={`${isDarkMode ? 'text-light/60' : 'text-navy/60'}`}>
+          <p className={`${isDarkMode ? "text-light/60" : "text-navy/60"}`}>
             Customize until match to your workflow
           </p>
         </div>
         {/* Render Settings Section */}
         <div
           className={`flex flex-col gap-7 py-5 px-8 rounded-xl ${
-            isDarkMode ? 'bg-darkBluishGray' : 'bg-white'
+            isDarkMode ? "bg-darkBluishGray" : "bg-white"
           }`}
         >
           {/* Image Upload Section */}
@@ -77,6 +82,7 @@ const Settings = () => {
           </button>
           <button
             className={`text-small rounded-md border-none cursor-pointer py-2 px-6 text-white bg-blueberry w-32`}
+            onClick={handleSave}
           >
             Save
           </button>

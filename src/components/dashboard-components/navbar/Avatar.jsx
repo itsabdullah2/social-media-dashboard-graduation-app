@@ -6,11 +6,13 @@ import { redirect, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/AuthProvider";
 
 const Avatar = () => {
-  const { isDarkMode } = useAppState();
+  const { isDarkMode, businessName } = useAppState();
   const { user } = useAuth();
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
+
+  const username = user.user_metadata.username;
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -43,11 +45,11 @@ const Avatar = () => {
           className="w-8 h-8 rounded-full object-cover"
         />
         <span
-          className={`text-sm font-medium hidden lg:block ${
+          className={`text-sm font-medium hidden lg:block first-letter:uppercase ${
             isDarkMode ? "text-white" : "text-navy"
           }`}
         >
-          {user.user_metadata.username}
+          {businessName ? businessName : username}
         </span>
         <LuChevronDown
           className={`text-lg transition-transform text-navy hidden lg:block ${

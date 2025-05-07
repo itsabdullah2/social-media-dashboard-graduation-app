@@ -14,6 +14,9 @@ export const AppProvider = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
+  const [businessName, setBusinessName] = useState("");
+  const [tempName, setTempName] = useState("");
+
   const [posts, setPosts] = useState([]);
   const [postTitle, setPostTitle] = useState("");
   const [postDescription, setPostDescription] = useState("");
@@ -52,7 +55,6 @@ export const AppProvider = ({ children }) => {
   };
 
   const handleEditPost = (post) => {
-    // Edit Mode
     setIsEditingMode(true);
     setEditingPostId(post.post_id);
     setPostTitle(post.title);
@@ -63,7 +65,6 @@ export const AppProvider = ({ children }) => {
 
   const handleClosePopup = () => {
     setIsPopupOpen(false);
-    // handleResetFields();
   };
 
   const handleResetFields = () => {
@@ -114,13 +115,11 @@ export const AppProvider = ({ children }) => {
     handleClosePopup();
     handleResetFields();
   };
-  // const handleDeletePost = (id) => {
-  //   setPosts((prevPost) => prevPost.filter((post) => post.post_id !== id));
-  // };
+
   const handleDeletePost = async (id) => {
     try {
-      await deleteSchedule(id); // ❌ delete from Supabase
-      setPosts((prevPosts) => prevPosts.filter((post) => post.post_id !== id)); // ✅ update UI
+      await deleteSchedule(id); // delete from Supabase
+      setPosts((prevPosts) => prevPosts.filter((post) => post.post_id !== id)); // update UI
     } catch (error) {
       console.error("Failed to delete post from Supabase:", error.message);
     }
@@ -137,12 +136,16 @@ export const AppProvider = ({ children }) => {
     postDateTime,
     postImage,
     isEditingMode,
+    businessName,
+    tempName,
     setPosts,
     setPostTitle,
     setPostDescription,
     setPostDateTime,
     setPostImage,
     setIsDarkMode,
+    setBusinessName,
+    setTempName,
     handleSidebar,
     handleSystemTheme,
     handleOpenPopup,
