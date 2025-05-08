@@ -1,6 +1,7 @@
 import Navbar from "./Navbar";
 import { Link } from "react-router-dom";
 import { useAppState } from "../../context/AppContext";
+import { FaArrowRight } from "react-icons/fa";
 
 const Header = () => {
   const { isDarkMode } = useAppState();
@@ -26,7 +27,7 @@ const Header = () => {
                 } sm:text-5xl md:text-6xl`}
               >
                 <span className="block">Track your</span>
-                <span className="block text-purple-600">
+                <span className="block text-indigo-600">
                   social media analytics
                 </span>
               </h1>
@@ -46,17 +47,17 @@ const Header = () => {
                   {/* Primary CTA button */}
                   <Link
                     to="/signup"
-                    className="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 md:py-4 md:text-lg md:px-10"
+                    className="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10"
                   >
-                    Get started
+                    Get started <FaArrowRight className="ml-2" />
                   </Link>
                   {/* Secondary CTA button */}
                   <a
                     href="#features"
                     className={`flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md ${
                       isDarkMode
-                        ? "text-purple-400 bg-gray-800 hover:bg-gray-700"
-                        : "text-purple-700 bg-purple-100 hover:bg-purple-200"
+                        ? "text-indigo-400 bg-gray-800 hover:bg-gray-700"
+                        : "text-indigo-700 bg-indigo-100 hover:bg-indigo-200"
                     } md:py-4 md:text-lg md:px-10`}
                   >
                     Learn more
