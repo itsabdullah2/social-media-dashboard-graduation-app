@@ -1,6 +1,7 @@
 import Header from "./Header";
 import About from "./About";
 import TryItNow from "./TryItNow";
+import Footer from "./Footer";
 import { useAppState } from "../../context/AppContext";
 
 const Landing = () => {
@@ -11,6 +12,7 @@ const Landing = () => {
       <Header />
       <About />
       <TryItNow />
+      <Footer />
     </main>
   );
 };
