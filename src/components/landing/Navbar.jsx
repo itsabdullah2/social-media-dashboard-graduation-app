@@ -35,7 +35,7 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
-          {/* Logo and brand name */}
+          
           <h2
             className={`ml-2 text-xl font-bold ${
               isDarkMode ? "text-white" : "text-gray-900"
@@ -44,7 +44,7 @@ const Navbar = () => {
             TrendTrack
           </h2>
 
-          {/* Mobile menu button */}
+          
           <div className="flex md:hidden">
             <button
               type="button"
@@ -60,7 +60,7 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* Desktop Navigation links */}
+          
           <div className="hidden md:flex md:items-center md:space-x-6">
             {navItems.map((item, i) => (
               <a
@@ -77,7 +77,7 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Dark mode toggle and sign in/up buttons */}
+          
           <div className="hidden md:flex md:items-center md:space-x-4">
             <button
               onClick={toggleDarkMode}
