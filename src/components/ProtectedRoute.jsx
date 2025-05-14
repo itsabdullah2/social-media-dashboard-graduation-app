@@ -1,16 +1,23 @@
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthProvider";
 import LoadingSpinner from "./LoadingSpinner";
 
 const ProtectedRoute = ({ children }) => {
-  const { user, loading } = useAuth();
+  const { user, loading, isAuthenticated } = useAuth();
+  const location = useLocation();
 
-  if (loading) return <LoadingSpinner />;
-
-  if (!user) {
-    return <Navigate to="/signin" />;
+  // Show loading spinner while checking authentication
+  if (loading) {
+    return <LoadingSpinner />;
   }
 
+  // If not authenticated, redirect to login
+  if (!isAuthenticated) {
+    console.log("User is not authenticated, redirecting to signin");
+    return <Navigate to="/signin" state={{ from: location }} replace />;
+  }
+
+  // User is authenticated, allow access to protected route
   return children;
 };
 

@@ -8,10 +8,12 @@ const SignIn = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    showPassword: false,
-    loading: false,
-    error: ""
   });
+  const [uiState, setUiState] = useState({
+    showPassword: false,
+    loading: false
+  });
+  const [errors, setErrors] = useState([]);
   const navigate = useNavigate();
   const { isDarkMode } = useAppState();
 
@@ -24,7 +26,7 @@ const SignIn = () => {
   };
 
   const togglePassword = () => {
-    setFormData(prev => ({
+    setUiState(prev => ({
       ...prev,
       showPassword: !prev.showPassword
     }));
@@ -32,19 +34,17 @@ const SignIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormData(prev => ({ ...prev, loading: true, error: "" }));
+    setUiState(prev => ({ ...prev, loading: true }));
+    setErrors([]);
 
     try {
       await signInWithEmail(formData.email, formData.password);
       navigate("/dashboard");
     } catch (err) {
       console.error("Login error:", err);
-      setFormData(prev => ({
-        ...prev,
-        error: err.message || "Failed to sign in. Please check your credentials."
-      }));
+      setErrors([err.message || "Failed to sign in. Please check your credentials."]);
     } finally {
-      setFormData(prev => ({ ...prev, loading: false }));
+      setUiState(prev => ({ ...prev, loading: false }));
     }
   };
 
@@ -121,7 +121,7 @@ const SignIn = () => {
                 </label>
                 <div className="relative">
                   <input
-                    type={formData.showPassword ? "text" : "password"}
+                    type={uiState.showPassword ? "text" : "password"}
                     name="password"
                     required
                     value={formData.password}
@@ -142,7 +142,7 @@ const SignIn = () => {
                         : "text-navy/80 hover:text-navy"
                     }`}
                   >
-                    {formData.showPassword ? (
+                    {uiState.showPassword ? (
                       <FaEyeSlash size={20} />
                     ) : (
                       <FaEye size={20} />
@@ -172,17 +172,17 @@ const SignIn = () => {
 
               <button
                 type="submit"
-                disabled={formData.loading}
+                disabled={uiState.loading}
                 className={`w-full bg-blueberry/80 text-white py-3 rounded-lg font-medium hover:bg-blueberry duration-200 cursor-pointer ${
-                  formData.loading ? "opacity-70 cursor-not-allowed" : ""
+                  uiState.loading ? "opacity-70 cursor-not-allowed" : ""
                 }`}
               >
-                {formData.loading ? "Signing In..." : "Sign In"}
+                {uiState.loading ? "Signing In..." : "Sign In"}
               </button>
 
-              {formData.error && (
-                <p className="text-red-500 text-sm text-center">{formData.error}</p>
-              )}
+              {errors.length > 0 && errors.map((error, index) => (
+                <p key={index} className="text-red-500 text-sm text-center">{error}</p>
+              ))}
 
               <button
                 type="button"
