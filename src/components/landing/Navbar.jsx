@@ -49,7 +49,7 @@ const Navbar = () => {
             <button
               type="button"
               onClick={toggleMenu}
-              className={`p-2 rounded-md ${
+              className={`p-2 rounded-md cursor-pointer ${
                 isDarkMode ? "text-gray-300" : "text-gray-700"
               }`}
               aria-controls="mobile-menu"
@@ -81,7 +81,7 @@ const Navbar = () => {
           <div className="hidden md:flex md:items-center md:space-x-4">
             <button
               onClick={toggleDarkMode}
-              className={`p-2 rounded-full transition-colors duration-200 ${
+              className={`p-2 rounded-full transition-colors duration-200 cursor-pointer ${
                 isDarkMode
                   ? "bg-gray-700 text-yellow-300 hover:bg-gray-600"
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -102,7 +102,7 @@ const Navbar = () => {
             </Link>
             <Link
               to="/signup"
-              className="text-white px-4 py-2 rounded-md text-sm font-medium bg-indigo-600 hover:bg-indigo-700 transition-colors duration-200"
+              className="text-white px-4 py-2 rounded-md text-sm font-medium bg-blueberry/80 hover:bg-blueberry transition-colors duration-200"
             >
               Sign Up
             </Link>
@@ -113,7 +113,11 @@ const Navbar = () => {
       {/* Mobile menu, show/hide based on menu state */}
       {isMenuOpen && (
         <div className="md:hidden" id="mobile-menu">
-          <div className={`px-2 pt-2 pb-3 space-y-1 ${isDarkMode ? "bg-navy" : "bg-white"}`}>
+          <div
+            className={`px-2 pt-2 pb-3 space-y-1 border-b border-blueberry mx-2 ${
+              isDarkMode ? "bg-gray-800" : "bg-white"
+            }`}
+          >
             {navItems.map((item, i) => (
               <a
                 key={i}
@@ -131,7 +135,7 @@ const Navbar = () => {
             <div className="flex items-center justify-between mt-4 px-3 py-2">
               <button
                 onClick={toggleDarkMode}
-                className={`p-2 rounded-full ${
+                className={`p-2 rounded-full cursor-pointer ${
                   isDarkMode
                     ? "bg-gray-700 text-yellow-300"
                     : "bg-gray-100 text-gray-700"
@@ -144,7 +148,7 @@ const Navbar = () => {
                   to="/signin"
                   className={`px-3 py-2 text-sm font-medium rounded-md ${
                     isDarkMode
-                      ? "text-white bg-gray-800 hover:bg-gray-700"
+                      ? "text-white bg-gray-800 hover:bg-gray-700 border border-blueberry"
                       : "text-gray-900 bg-gray-100 hover:bg-gray-200"
                   }`}
                 >
@@ -152,7 +156,7 @@ const Navbar = () => {
                 </Link>
                 <Link
                   to="/signup"
-                  className="text-white px-3 py-2 rounded-md text-sm font-medium bg-indigo-600 hover:bg-indigo-700"
+                  className="text-white px-3 py-2 rounded-md text-sm font-medium bg-blueberry hover:bg-blueberry"
                 >
                   Sign Up
                 </Link>

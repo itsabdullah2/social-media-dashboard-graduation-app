@@ -1,16 +1,15 @@
-import { useSession } from "@supabase/auth-helpers-react";
 import { useAppState } from "../../../context/AppContext";
 import Avatar from "./Avatar";
 import Dropdown from "./Dropdown";
 import Notifications from "./Notifications";
 import SearchBar from "./SearchBar";
 import { LuMenu } from "react-icons/lu";
+import { useAuth } from "../../../context/AuthProvider";
 
 const DashboardNavbar = () => {
-  const { isDarkMode, handleSidebar, isSidebarOpen, businessName } =
-    useAppState();
-  const session = useSession();
-  const username = session?.user?.user_metadata?.username;
+  const { isDarkMode, handleSidebar, isSidebarOpen, username } = useAppState();
+  const { user } = useAuth();
+  const AuthenticatedUsername = user?.user_metadata?.username;
 
   return (
     <nav className={`flex items-center justify-between py-5`}>
@@ -32,9 +31,9 @@ const DashboardNavbar = () => {
           ${isSidebarOpen ? "lg: xl:text-large 2xl:" : "lg: 2xl:text-large"}`}
         >
           Hello{" "}
-          {businessName
-            ? businessName
-            : username?.charAt(0).toUpperCase() + username?.slice(1)}
+          {username ||
+            AuthenticatedUsername?.charAt(0).toUpperCase() +
+              AuthenticatedUsername?.slice(1)}
         </h1>
       </div>
 

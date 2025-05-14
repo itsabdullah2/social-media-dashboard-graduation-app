@@ -1,12 +1,12 @@
-import { useNavigate } from 'react-router-dom';
-import { signOut } from '../../auth/S_auth';
+import { useNavigate } from "react-router-dom";
+import { signOut } from "../../../supabase/S_auth";
 
 const AccountState = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
     signOut();
-    navigate('/');
+    navigate("/");
   };
 
   return (

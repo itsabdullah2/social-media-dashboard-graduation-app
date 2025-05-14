@@ -1,13 +1,13 @@
-import { Routes, Route } from 'react-router-dom';
-import OverviewPage from './pages/OverviewPage';
-import LandingPage from './pages/LandingPage';
-import SettingsPage from './pages/SettingsPage';
-import SchedulePage from './pages/SchedulePage';
-import SignInPage from './pages/SignInPage';
-import SignUpPage from './pages/SignUpPage';
-import ActivitiesPage from './pages/ActivitiesPage';
-import StatisticsPage from './pages/StatisticsPage';
-import ProtectedRoute from './components/ProtectedRoute';
+import { Routes, Route } from "react-router-dom";
+import OverviewPage from "./pages/OverviewPage";
+import LandingPage from "./pages/LandingPage";
+import SettingsPage from "./pages/SettingsPage";
+import SchedulePage from "./pages/SchedulePage";
+import SignInPage from "./pages/SignInPage";
+import SignUpPage from "./pages/SignUpPage";
+import ActivitiesPage from "./pages/ActivitiesPage";
+import StatisticsPage from "./pages/StatisticsPage";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (

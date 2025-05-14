@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaUser, FaEye, FaEyeSlash } from "react-icons/fa";
 import { IoMdMail, IoIosLock } from "react-icons/io";
 import { useAppState } from "../../context/AppContext";
-import { signUpWithEmail } from "./S_auth";
+import { signUpWithEmail } from "../../supabase/S_auth";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");

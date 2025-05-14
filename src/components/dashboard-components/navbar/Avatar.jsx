@@ -1,18 +1,18 @@
 import React, { useState, useRef, useEffect } from "react";
 import { LuChevronDown } from "react-icons/lu";
 import { useAppState } from "../../../context/AppContext";
-import { signOut } from "../../auth/S_auth";
-import { redirect, useNavigate } from "react-router-dom";
+import { signOut } from "../../../supabase/S_auth";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/AuthProvider";
 
 const Avatar = () => {
-  const { isDarkMode, businessName } = useAppState();
+  const { isDarkMode, username, avatar } = useAppState();
   const { user } = useAuth();
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
 
-  const username = user.user_metadata.username;
+  const authenticatedUsername = user?.user_metadata?.username;
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -40,7 +40,7 @@ const Avatar = () => {
         className="flex items-center gap-2 p-2 rounded-md transition-colors cursor-pointer hover:bg-blueberry/10 duration-150"
       >
         <img
-          src={"https://i.pravatar.cc/100?img=3"}
+          src={avatar || "https://i.pravatar.cc/100?img=3"}
           alt="Avatar"
           className="w-8 h-8 rounded-full object-cover"
         />
@@ -49,7 +49,9 @@ const Avatar = () => {
             isDarkMode ? "text-white" : "text-navy"
           }`}
         >
-          {businessName ? businessName : username}
+          {username ||
+            authenticatedUsername?.charAt(0).toUpperCase() +
+              authenticatedUsername?.slice(1)}
         </span>
         <LuChevronDown
           className={`text-lg transition-transform text-navy hidden lg:block ${
@@ -62,7 +64,9 @@ const Avatar = () => {
         <div className="absolute right-0 mt-2 w-48 bg-white border border-light rounded-md shadow-lg z-20">
           <div className="px-4 py-3 border-b border-gray-100">
             <p className="text-sm font-medium text-navy">
-              {user.user_metadata.username}
+              {username ||
+                authenticatedUsername?.charAt(0).toUpperCase() +
+                  authenticatedUsername?.slice(1)}
             </p>
           </div>
           <button

@@ -1,5 +1,5 @@
 import Header from "./Header";
-import About from "./About";
+import Features from "./Features";
 import TryItNow from "./TryItNow";
 import Footer from "./Footer";
 import { useAppState } from "../../context/AppContext";
@@ -10,7 +10,7 @@ const Landing = () => {
   return (
     <main className={`${isDarkMode ? "bg-navy" : "bg-white"}`}>
       <Header />
-      <About />
+      <Features />
       <TryItNow />
       <Footer />
     </main>

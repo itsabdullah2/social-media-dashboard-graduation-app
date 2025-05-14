@@ -27,7 +27,7 @@ const Header = () => {
                 } sm:text-5xl md:text-6xl`}
               >
                 <span className="block">Track your</span>
-                <span className="block text-indigo-600">
+                <span className="block text-blueberry">
                   social media analytics
                 </span>
               </h1>
@@ -47,17 +47,17 @@ const Header = () => {
                   
                   <Link
                     to="/signup"
-                    className="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10"
+                    className="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blueberry/80 hover:bg-blueberry md:py-4 md:text-lg md:px-10 duration-200"
                   >
                     Get started <FaArrowRight className="ml-2" />
                   </Link>
                   
                   <a
                     href="#features"
-                    className={`flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md ${
+                    className={`flex items-center justify-center px-8 py-3 text-base font-medium rounded-md border duration-200 ${
                       isDarkMode
-                        ? "text-indigo-400 bg-gray-800 hover:bg-gray-700"
-                        : "text-indigo-700 bg-indigo-100 hover:bg-indigo-200"
+                        ? "text-blueberry bg-gray-800 hover:bg-gray-700"
+                        : "border-blueberry text-blueberry hover:bg-blueberry hover:text-white"
                     } md:py-4 md:text-lg md:px-10`}
                   >
                     Learn more
