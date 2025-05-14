@@ -1,30 +1,30 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { useAppState } from '../../context/AppContext';
-import { signInWithEmail } from './S_auth';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useAppState } from "../../context/AppContext";
+import { signInWithEmail } from "../../supabase/S_auth";
 
 const SignIn = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   const { isDarkMode } = useAppState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError('');
+    setError("");
 
     try {
       await signInWithEmail(email, password);
-      navigate('/dashboard');
+      navigate("/dashboard");
     } catch (err) {
-      console.error('Login error:', err);
+      console.error("Login error:", err);
       setError(
-        err.message || 'Failed to sign in. Please check your credentials.'
+        err.message || "Failed to sign in. Please check your credentials."
       );
     } finally {
       setLoading(false);
@@ -34,12 +34,12 @@ const SignIn = () => {
   return (
     <div
       className={`min-h-screen ${
-        isDarkMode ? 'bg-navy' : 'bg-light'
+        isDarkMode ? "bg-navy" : "bg-light"
       } flex items-center justify-center p-4`}
     >
       <div
         className={`w-full max-w-[1000px] grid grid-cols-1 md:grid-cols-2 ${
-          isDarkMode ? 'bg-darkBluishGray' : 'bg-white'
+          isDarkMode ? "bg-darkBluishGray" : "bg-white"
         } rounded-3xl overflow-hidden`}
       >
         <div className="relative p-8 bg-gradient-to-br from-purple via-blueberry to-cyan rounded-3xl m-4">
@@ -61,7 +61,7 @@ const SignIn = () => {
           <div className="max-w-md w-full mx-auto">
             <h2
               className={`text-large ${
-                isDarkMode ? 'text-white' : 'text-navy'
+                isDarkMode ? "text-white" : "text-navy"
               } mb-2`}
             >
               Welcome Back
@@ -74,7 +74,7 @@ const SignIn = () => {
               <div>
                 <label
                   className={`flex items-center text-sm font-medium ${
-                    isDarkMode ? 'text-white' : 'text-navy'
+                    isDarkMode ? "text-white" : "text-navy"
                   } mb-2`}
                 >
                   Email
@@ -85,9 +85,9 @@ const SignIn = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className={`w-full px-4 py-3 ${
-                    isDarkMode ? 'bg-navy' : 'bg-light'
+                    isDarkMode ? "bg-navy" : "bg-light"
                   } rounded-lg ${
-                    isDarkMode ? 'text-white' : 'text-navy'
+                    isDarkMode ? "text-white" : "text-navy"
                   } focus:outline-none placeholder:duration-200 focus:placeholder:opacity-0`}
                   placeholder="Enter your email"
                 />
@@ -96,21 +96,21 @@ const SignIn = () => {
               <div>
                 <label
                   className={`flex items-center text-sm font-medium ${
-                    isDarkMode ? 'text-white' : 'text-navy'
+                    isDarkMode ? "text-white" : "text-navy"
                   } mb-2`}
                 >
                   Password
                 </label>
                 <div className="relative">
                   <input
-                    type={showPassword ? 'text' : 'password'}
+                    type={showPassword ? "text" : "password"}
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className={`w-full px-4 py-3 ${
-                      isDarkMode ? 'bg-navy' : 'bg-light'
+                      isDarkMode ? "bg-navy" : "bg-light"
                     } rounded-lg ${
-                      isDarkMode ? 'text-white' : 'text-navy'
+                      isDarkMode ? "text-white" : "text-navy"
                     } focus:outline-none placeholder:duration-200 focus:placeholder:opacity-0`}
                     placeholder="Enter your password"
                   />
@@ -119,8 +119,8 @@ const SignIn = () => {
                     onClick={() => setShowPassword(!showPassword)}
                     className={`absolute top-1/2 right-2 -translate-y-1/2 ${
                       isDarkMode
-                        ? 'text-light/80 hover:text-light'
-                        : 'text-navy/80 hover:text-navy'
+                        ? "text-light/80 hover:text-light"
+                        : "text-navy/80 hover:text-navy"
                     }`}
                   >
                     {showPassword ? (
@@ -137,7 +137,7 @@ const SignIn = () => {
                   <input type="checkbox" />
                   <span
                     className={`ml-2 text-sm ${
-                      isDarkMode ? 'text-white' : 'text-navy'
+                      isDarkMode ? "text-white" : "text-navy"
                     }`}
                   >
                     Remember me
@@ -155,10 +155,10 @@ const SignIn = () => {
                 type="submit"
                 disabled={loading}
                 className={`w-full bg-blueberry/80 text-white py-3 rounded-lg font-medium hover:bg-blueberry duration-200 cursor-pointer ${
-                  loading ? 'opacity-70 cursor-not-allowed' : ''
+                  loading ? "opacity-70 cursor-not-allowed" : ""
                 }`}
               >
-                {loading ? 'Signing In...' : 'Sign In'}
+                {loading ? "Signing In..." : "Sign In"}
               </button>
 
               {error && (
@@ -168,7 +168,7 @@ const SignIn = () => {
               <button
                 type="button"
                 className={`w-full ${
-                  isDarkMode ? 'bg-light/20 text-light' : 'bg-cyan/10 text-navy'
+                  isDarkMode ? "bg-light/20 text-light" : "bg-cyan/10 text-navy"
                 } text-light hover:text-navy py-3 rounded-lg font-medium hover:bg-light duration-200 flex items-center justify-center cursor-pointer`}
               >
                 <img
@@ -181,7 +181,7 @@ const SignIn = () => {
             </form>
 
             <p className="text-center mt-6 text-gray-400">
-              Don't have an account?{' '}
+              Don't have an account?{" "}
               <Link to="/signup" className="text-purple/80 hover:text-purple">
                 Sign Up
               </Link>
