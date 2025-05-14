@@ -6,29 +6,47 @@ import { useAppState } from "../../context/AppContext";
 import { signUpWithEmail } from "../../supabase/S_auth";
 
 const SignUp = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    username: "",
+    showPassword: false,
+    loading: false,
+    error: ""
+  });
   const { isDarkMode } = useAppState();
-
   const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const togglePassword = () => {
+    setFormData(prev => ({
+      ...prev,
+      showPassword: !prev.showPassword
+    }));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError("");
+    setFormData(prev => ({ ...prev, loading: true, error: "" }));
 
     try {
-      await signUpWithEmail(email, password, username);
+      await signUpWithEmail(formData.email, formData.password, formData.username);
       navigate("/signin");
     } catch (err) {
       console.error("Signup error:", err);
-      setError(err.message || "Failed to sign up. Please try again.");
+      setFormData(prev => ({
+        ...prev,
+        error: err.message || "Failed to sign up. Please try again."
+      }));
     } finally {
-      setLoading(false);
+      setFormData(prev => ({ ...prev, loading: false }));
     }
   };
 
@@ -83,9 +101,10 @@ const SignUp = () => {
                 </label>
                 <input
                   type="text"
+                  name="username"
                   required
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  value={formData.username}
+                  onChange={handleChange}
                   className={`w-full px-4 py-3 ${
                     isDarkMode ? "bg-navy" : "bg-light"
                   } rounded-lg ${
@@ -106,9 +125,10 @@ const SignUp = () => {
                 </label>
                 <input
                   type="email"
+                  name="email"
                   required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={formData.email}
+                  onChange={handleChange}
                   className={`w-full px-4 py-3 ${
                     isDarkMode ? "bg-navy" : "bg-light"
                   } rounded-lg ${
@@ -129,10 +149,11 @@ const SignUp = () => {
                 </label>
                 <div className="relative">
                   <input
-                    type={showPassword ? "text" : "password"}
+                    type={formData.showPassword ? "text" : "password"}
+                    name="password"
                     required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    value={formData.password}
+                    onChange={handleChange}
                     className={`w-full px-4 py-3 ${
                       isDarkMode ? "bg-navy" : "bg-light"
                     } rounded-lg ${
@@ -142,14 +163,14 @@ const SignUp = () => {
                   />
                   <button
                     type="button"
-                    onClick={() => setShowPassword(!showPassword)}
+                    onClick={togglePassword}
                     className={`absolute top-1/2 right-2 -translate-y-1/2 ${
                       isDarkMode
                         ? "text-light/80 hover:text-light"
                         : "text-navy/80 hover:text-navy"
                     }`}
                   >
-                    {showPassword ? (
+                    {formData.showPassword ? (
                       <FaEyeSlash size={20} />
                     ) : (
                       <FaEye size={20} />
@@ -160,16 +181,16 @@ const SignUp = () => {
 
               <button
                 type="submit"
-                disabled={loading}
+                disabled={formData.loading}
                 className={`w-full bg-blueberry/80 text-white py-3 rounded-lg font-medium hover:bg-blueberry duration-200 cursor-pointer ${
-                  loading ? "opacity-70 cursor-not-allowed" : ""
+                  formData.loading ? "opacity-70 cursor-not-allowed" : ""
                 }`}
               >
-                {loading ? "Creating Account..." : "Create Account"}
+                {formData.loading ? "Creating Account..." : "Create Account"}
               </button>
 
-              {error && (
-                <p className="text-red-500 text-sm text-center">{error}</p>
+              {formData.error && (
+                <p className="text-red-500 text-sm text-center">{formData.error}</p>
               )}
 
               <button
