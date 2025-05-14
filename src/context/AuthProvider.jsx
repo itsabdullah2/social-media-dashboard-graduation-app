@@ -60,7 +60,7 @@ export const AuthProvider = ({ children }) => {
         }
       } finally {
         if (mounted) {
-          setLoading(false);
+      setLoading(false);
           setSessionChecked(true);
         }
       }

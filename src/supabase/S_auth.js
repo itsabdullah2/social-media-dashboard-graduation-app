@@ -42,7 +42,7 @@ export const signOut = async () => {
     console.log("Signing out user");
     // Force clear the session from all tabs and windows
     const { error } = await supabase.auth.signOut({ scope: 'global' });
-    if (error) throw error;
+  if (error) throw error;
     
     // Clear localStorage manually to make sure everything is gone
     clearLocalAuthData();

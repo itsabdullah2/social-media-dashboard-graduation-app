@@ -9,6 +9,7 @@ import SignInPage from "./pages/SignInPage";
 import SignUpPage from "./pages/SignUpPage";
 import ActivitiesPage from "./pages/ActivitiesPage";
 import StatisticsPage from "./pages/StatisticsPage";
+import ErrorPage from "./pages/ErrorPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
 
@@ -92,6 +93,9 @@ function App() {
             </ProtectedRoute>
           }
         />
+        
+        {/* Fallback route for 404s - will be handled by the error boundary in main.jsx */}
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </>
   );
