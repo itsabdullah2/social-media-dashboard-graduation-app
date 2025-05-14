@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useAppState } from "../context/AppContext";
 import { useAuth } from "../context/AuthProvider";
+import { toast } from "react-toastify";
 
 const useSettings = () => {
   const {
@@ -42,6 +43,7 @@ const useSettings = () => {
       } catch (error) {
         console.error("Failed to initialize settings:", error);
         setError("Failed to initialize settings");
+        toast.error("Failed to initialize settings");
       }
     };
 
@@ -71,8 +73,11 @@ const useSettings = () => {
       localStorage.setItem("userSettings", JSON.stringify(settings));
       setUsername(tempName);
       setAvatar(tempAvatar);
+      toast.success("Settings saved successfully!");
     } catch (error) {
-      setError(error.message || "Failed to save settings");
+      const errorMessage = error.message || "Failed to save settings";
+      setError(errorMessage);
+      toast.error(errorMessage);
       setUsername(tempName);
       setAvatar(tempAvatar);
     } finally {
@@ -84,6 +89,7 @@ const useSettings = () => {
     setUsername(tempName);
     setAvatar(tempAvatar);
     setError(null);
+    toast.info("Changes discarded");
   };
 
   return {
