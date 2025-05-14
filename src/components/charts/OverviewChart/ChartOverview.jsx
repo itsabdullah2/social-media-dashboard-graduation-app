@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   AreaChart,
   Area,
@@ -7,9 +7,9 @@ import {
   YAxis,
   ResponsiveContainer,
   CartesianGrid,
-} from 'recharts';
-import { useAppState } from '../../../context/AppContext';
-import { supabase } from '../../auth/supabase';
+} from "recharts";
+import { useAppState } from "../../../context/AppContext";
+import { supabase } from "../../../supabase/supabase";
 
 const ChartOverview = () => {
   const { isDarkMode } = useAppState();
@@ -19,11 +19,11 @@ const ChartOverview = () => {
     async function fetchOverviewData() {
       try {
         const { data, error } = await supabase
-          .from('overview_data')
-          .select('*');
+          .from("overview_data")
+          .select("*");
         setData(data);
       } catch (error) {
-        console.error('Error fetching overview data', error);
+        console.error("Error fetching overview data", error);
       }
     }
 
@@ -62,19 +62,19 @@ const ChartOverview = () => {
             <CartesianGrid vertical={false} strokeDasharray="3 3" />
             <XAxis
               dataKey="month"
-              tick={{ fill: isDarkMode ? 'var(--color-white)' : '#000000' }}
+              tick={{ fill: isDarkMode ? "var(--color-white)" : "#000000" }}
             />
             <YAxis
               domain={[5000, 30000]}
               ticks={[5000, 10000, 15000, 20000, 25000, 30000]}
               interval={0}
               tickFormatter={(val) => `${val / 1000}k`}
-              tick={{ fill: isDarkMode ? 'var(--color-white)' : '#000000' }}
+              tick={{ fill: isDarkMode ? "var(--color-white)" : "#000000" }}
             />
             <Tooltip
               formatter={(value) => value.toLocaleString()}
-              labelStyle={{ fontWeight: 'bold' }}
-              itemStyle={{ color: '#000' }}
+              labelStyle={{ fontWeight: "bold" }}
+              itemStyle={{ color: "#000" }}
             />
             <Area
               type="monotone"

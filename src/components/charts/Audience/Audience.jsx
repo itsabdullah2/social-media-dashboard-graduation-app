@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { supabase } from '../../../components/auth/supabase';
-import { useAppState } from '../../../context/AppContext';
+import React, { useEffect, useState } from "react";
+import { supabase } from "../../../supabase/supabase";
+import { useAppState } from "../../../context/AppContext";
 
 function Audience() {
   const { isDarkMode } = useAppState();
@@ -8,9 +8,9 @@ function Audience() {
 
   useEffect(() => {
     async function fetchAudienceData() {
-      const { data, error } = await supabase.from('audience_data').select('*');
+      const { data, error } = await supabase.from("audience_data").select("*");
       if (error) {
-        console.error('Error fetching audience data', error);
+        console.error("Error fetching audience data", error);
       } else {
         setAudienceData(data);
       }
@@ -25,9 +25,9 @@ function Audience() {
         className="p-4 rounded-xl shadow-md h-[400px] w-full"
         style={{
           backgroundColor: isDarkMode
-            ? 'var(--color-darkBluishGray)'
-            : 'var(--color-white)',
-          color: isDarkMode ? 'var(--color-white)' : '#000000',
+            ? "var(--color-darkBluishGray)"
+            : "var(--color-white)",
+          color: isDarkMode ? "var(--color-white)" : "#000000",
         }}
       >
         <div className="flex justify-between items-center mb-4">
@@ -56,9 +56,9 @@ function Audience() {
                 <td className="py-2">{row.viewers.toLocaleString()}</td>
                 <td
                   className={`py-2 ${
-                    row.dynamics.startsWith('+')
-                      ? 'text-green-500'
-                      : 'text-red-500'
+                    row.dynamics.startsWith("+")
+                      ? "text-green-500"
+                      : "text-red-500"
                   }`}
                 >
                   {row.dynamics}
