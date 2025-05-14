@@ -7,9 +7,9 @@ const Footer = () => {
   return (
     <footer className={`${isDarkMode ? "bg-navy" : "bg-white"}`}>
       <div className="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
-        {/* Social media icons container with centered flex layout */}
+        
         <div className="mt-8 flex justify-center space-x-6">
-          {/* Facebook link with react icon */}
+          
           <a
             href="#"
             className={`${
@@ -21,7 +21,7 @@ const Footer = () => {
             <span className="sr-only">Facebook</span>
             <FaFacebook className="h-6 w-6" />
           </a>
-          {/* Instagram link with react icon */}
+          
           <a
             href="#"
             className={`${
@@ -33,7 +33,7 @@ const Footer = () => {
             <span className="sr-only">Instagram</span>
             <FaInstagram className="h-6 w-6" />
           </a>
-          {/* Twitter link with react icon */}
+          
           <a
             href="#"
             className={`${
@@ -46,7 +46,7 @@ const Footer = () => {
             <FaTwitter className="h-6 w-6" />
           </a>
         </div>
-        {/* Copyright text with centered alignment */}
+        
         <div className="mt-8 text-center">
           <p
             className={`text-base ${

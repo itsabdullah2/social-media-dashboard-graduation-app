@@ -38,7 +38,7 @@ const Features = () => {
       className={`py-20 ${isDarkMode ? "bg-darkBluishGray" : "bg-gray-50"}`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section header with improved design */}
+        
         <div className="text-center max-w-3xl mx-auto">
           <div className="inline-block px-3 py-1 rounded-full text-xs font-semibold tracking-wider uppercase bg-blueberry text-white mb-4">
             Features
@@ -63,7 +63,7 @@ const Features = () => {
           </p>
         </div>
 
-        {/* Features grid with improved cards */}
+        
         <div className="mt-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {features.map((feature, index) => (
