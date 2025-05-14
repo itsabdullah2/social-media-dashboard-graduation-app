@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useAppState } from "../context/AppContext";
 import { useAuth } from "../context/AuthProvider";
-import { toast } from "react-hot-toast";
 
 const useSettings = () => {
   const {
@@ -72,7 +71,6 @@ const useSettings = () => {
       localStorage.setItem("userSettings", JSON.stringify(settings));
       setUsername(tempName);
       setAvatar(tempAvatar);
-      toast.success("Settings saved successfully!");
     } catch (error) {
       setError(error.message || "Failed to save settings");
       setUsername(tempName);
