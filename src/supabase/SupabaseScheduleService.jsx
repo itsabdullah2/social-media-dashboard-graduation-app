@@ -42,35 +42,6 @@ const uploadImage = async (file) => {
   }
 };
 
-// Handle the uploaded avatar
-const uploadAvatar = async (file) => {
-  if (!file) return null;
-
-  try {
-    const timestamp = Date.now();
-    const fileExt = file?.name?.split(".").pop() || "jpg";
-    const fileName = `${timestamp}.${fileExt}`;
-
-    const { data, error } = await supabase.storage
-      .from("user-avatar")
-      .upload(`public/${fileName}`, file, {
-        cacheControl: "3600",
-        upsert: false,
-      });
-
-    if (error) throw error;
-
-    const {
-      data: { publicUrl },
-    } = supabase.storage.from("user-avatar").getPublicUrl(`public/${fileName}`);
-
-    return publicUrl;
-  } catch (error) {
-    console.error("Avatar upload error:", error);
-    throw new Error(`Avatar upload failed: ${error.message}`);
-  }
-};
-
 // Create
 export const createSchedule = async (scheduleData) => {
   try {
