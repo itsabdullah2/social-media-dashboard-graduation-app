@@ -9,32 +9,32 @@ import SchedulePosts from "../../charts/SchedulePosts/SchedulePosts";
 
 const Overview = () => {
   return (
-    <div className="flex flex-col gap-4 pb-4">
+    <div className="flex flex-col gap-4 pb-4 px-2 sm:px-4">
       <StatesComponent />
 
-      <div className="flex flex-wrap gap-4">
-        <div className="flex-1 min-w-[300px]">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="w-full">
           <OverviewComponent />
         </div>
-        <div className="flex-1 min-w-[300px]">
+        <div className="w-full">
           <Audience />
         </div>
-        <div className="flex-1 min-w-[300px]">
+        <div className="w-full">
           <RevenueComponent />
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-4">
-        <div className="flex-1 min-w-[250px]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="w-full">
           <GenderComponent />
         </div>
-        <div className="flex-1 min-w-[250px]">
+        <div className="w-full">
           <AgeComponent />
         </div>
-        <div className="flex-1 min-w-[250px]">
+        <div className="w-full">
           <ActivityComponent />
         </div>
-        <div className="flex-1 min-w-[250px]">
+        <div className="w-full">
           <SchedulePosts />
         </div>
       </div>
