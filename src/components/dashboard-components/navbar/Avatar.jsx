@@ -1,9 +1,10 @@
-import React, { useState, useRef, useEffect } from "react";
-import { LuChevronDown } from "react-icons/lu";
-import { useAppState } from "../../../context/AppContext";
-import { signOut } from "../../../supabase/S_auth";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../../context/AuthProvider";
+import React, { useState, useRef, useEffect } from 'react';
+import { LuChevronDown } from 'react-icons/lu';
+import { useAppState } from '../../../context/AppContext';
+import { signOut } from '../../../supabase/S_auth';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../../context/AuthProvider';
+import { capitalizeFirstLetter } from '../../../utils/transformFirstLetter';
 
 const Avatar = () => {
   const { isDarkMode, username, avatar } = useAppState();
@@ -20,8 +21,8 @@ const Avatar = () => {
         setOpen(false);
       }
     };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   const handleDropdownMenu = () => {
@@ -30,7 +31,7 @@ const Avatar = () => {
 
   const handleLogout = () => {
     signOut();
-    navigate("/");
+    navigate('/');
   };
 
   return (
@@ -40,23 +41,22 @@ const Avatar = () => {
         className="flex items-center gap-2 p-2 rounded-md transition-colors cursor-pointer hover:bg-blueberry/10 duration-150"
       >
         <img
-          src={avatar || "https://i.pravatar.cc/100?img=3"}
+          src={avatar || 'https://i.pravatar.cc/100?img=3'}
           alt="Avatar"
           className="w-8 h-8 rounded-full object-cover"
         />
         <span
           className={`text-sm font-medium hidden lg:block first-letter:uppercase ${
-            isDarkMode ? "text-white" : "text-navy"
+            isDarkMode ? 'text-white' : 'text-navy'
           }`}
         >
-          {username ||
-            authenticatedUsername?.charAt(0).toUpperCase() +
-              authenticatedUsername?.slice(1)}
+          {capitalizeFirstLetter(username) ||
+            capitalizeFirstLetter(authenticatedUsername)}
         </span>
         <LuChevronDown
           className={`text-lg transition-transform text-navy hidden lg:block ${
-            open ? "rotate-180" : ""
-          } ${isDarkMode ? "text-white" : "text-navy"}`}
+            open ? 'rotate-180' : ''
+          } ${isDarkMode ? 'text-white' : 'text-navy'}`}
         />
       </button>
 
@@ -64,9 +64,8 @@ const Avatar = () => {
         <div className="absolute right-0 mt-2 w-48 bg-white border border-light rounded-md shadow-lg z-20">
           <div className="px-4 py-3 border-b border-gray-100">
             <p className="text-sm font-medium text-navy">
-              {username ||
-                authenticatedUsername?.charAt(0).toUpperCase() +
-                  authenticatedUsername?.slice(1)}
+              {capitalizeFirstLetter(username) ||
+                capitalizeFirstLetter(authenticatedUsername)}
             </p>
           </div>
           <button
