@@ -15,7 +15,7 @@ const Schedule = () => {
 
   return (
     <section
-      className={`w-full flex flex-col gap-5 min-h-full ${
+      className={`w-full flex flex-col gap-5 min-h-[80vh] ${
         isDarkMode ? 'bg-darkBluishGray' : 'bg-white'
       } py-5 px-3 rounded-xl`}
     >
