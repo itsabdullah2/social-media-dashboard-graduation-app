@@ -2,11 +2,11 @@ import React, { useState, useRef, useEffect } from 'react';
 import { LuChevronDown } from 'react-icons/lu';
 import { useAppState } from '../../../context/AppContext';
 import { signOut } from '../../../supabase/S_auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../context/AuthProvider';
 import { capitalizeFirstLetter } from '../../../utils/transformFirstLetter';
 
-const Avatar = () => {
+const Avatar = ({ dashboard }) => {
   const { isDarkMode, username, avatar } = useAppState();
   const { user } = useAuth();
   const [open, setOpen] = useState(false);
@@ -62,11 +62,19 @@ const Avatar = () => {
 
       {open && (
         <div className="absolute right-0 mt-2 w-48 bg-white border border-light rounded-md shadow-lg z-20">
-          <div className="px-4 py-3 border-b border-gray-100">
+          <div className="px-4 py-3 border-b border-gray-100 flex flex-col gap-2">
             <p className="text-sm font-medium text-navy">
               {capitalizeFirstLetter(username) ||
                 capitalizeFirstLetter(authenticatedUsername)}
             </p>
+            {dashboard && (
+              <Link
+                to="/dashboard"
+                className="text-sm font-medium text-navy hover:bg-cyan/10 py-1 duration-200"
+              >
+                Dashboard
+              </Link>
+            )}
           </div>
           <button
             onClick={handleLogout}
