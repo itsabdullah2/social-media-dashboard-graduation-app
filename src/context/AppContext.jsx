@@ -1,13 +1,13 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from 'react';
 import {
   createSchedule,
   deleteSchedule,
   getSchedules,
   updateSchedule,
-} from "../supabase/SupabaseScheduleService";
-import { nanoid } from "nanoid";
-import { supabase } from "../supabase/supabase";
-import { useAuth } from "./AuthProvider";
+} from '../supabase/SupabaseScheduleService';
+import { nanoid } from 'nanoid';
+import { supabase } from '../supabase/supabase';
+import { useAuth } from './AuthProvider';
 
 const AppContext = createContext(null);
 
@@ -16,15 +16,15 @@ export const AppProvider = ({ children }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-  const [username, setUsername] = useState("");
-  const [tempName, setTempName] = useState("");
+  const [username, setUsername] = useState('');
+  const [tempName, setTempName] = useState('');
   const [avatar, setAvatar] = useState(null);
   const [tempAvatar, setTempAvatar] = useState(null);
 
   const [posts, setPosts] = useState([]);
-  const [postTitle, setPostTitle] = useState("");
-  const [postDescription, setPostDescription] = useState("");
-  const [postDateTime, setPostDateTime] = useState("");
+  const [postTitle, setPostTitle] = useState('');
+  const [postDescription, setPostDescription] = useState('');
+  const [postDateTime, setPostDateTime] = useState('');
   const [postImage, setPostImage] = useState(null);
 
   const [isEditingMode, setIsEditingMode] = useState(false);
@@ -34,12 +34,12 @@ export const AppProvider = ({ children }) => {
 
   // Load settings from localStorage on initial render
   useEffect(() => {
-    const savedSettings = localStorage.getItem("userSettings");
+    const savedSettings = localStorage.getItem('userSettings');
     if (savedSettings) {
       const settings = JSON.parse(savedSettings);
-      setUsername(settings.username || "");
+      setUsername(settings.username || '');
       setAvatar(settings.avatar || null);
-      setIsDarkMode(settings.theme === "dark");
+      setIsDarkMode(settings.theme === 'dark');
     }
   }, []);
 
@@ -55,7 +55,7 @@ export const AppProvider = ({ children }) => {
           setPosts(data);
         }
       } catch (error) {
-        console.error("Error fetching schedules:", error);
+        console.error('Error fetching schedules:', error);
       }
     };
 
@@ -66,9 +66,9 @@ export const AppProvider = ({ children }) => {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {
-      if (event === "SIGNED_IN") {
+      if (event === 'SIGNED_IN') {
         fetchData();
-      } else if (event === "SIGNED_OUT") {
+      } else if (event === 'SIGNED_OUT') {
         setPosts([]);
       }
     });
@@ -81,19 +81,19 @@ export const AppProvider = ({ children }) => {
   const toggleDarkMode = () => {
     setIsDarkMode((prev) => !prev);
     // Save theme to localStorage
-    const savedSettings = localStorage.getItem("userSettings");
+    const savedSettings = localStorage.getItem('userSettings');
     if (savedSettings) {
       const settings = JSON.parse(savedSettings);
-      settings.theme = !isDarkMode ? "dark" : "light";
-      localStorage.setItem("userSettings", JSON.stringify(settings));
+      settings.theme = !isDarkMode ? 'dark' : 'light';
+      localStorage.setItem('userSettings', JSON.stringify(settings));
     } else {
       // If no settings exist yet, create them with default values
       const defaultSettings = {
         username: username || user?.user_metadata?.username,
-        theme: !isDarkMode ? "dark" : "light",
+        theme: !isDarkMode ? 'dark' : 'light',
         avatar: avatar,
       };
-      localStorage.setItem("userSettings", JSON.stringify(defaultSettings));
+      localStorage.setItem('userSettings', JSON.stringify(defaultSettings));
     }
   };
 
@@ -103,23 +103,23 @@ export const AppProvider = ({ children }) => {
 
   const handleSystemTheme = () => {
     const systemPrefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
+      '(prefers-color-scheme: dark)'
     ).matches;
     setIsDarkMode(systemPrefersDark);
     // Save system theme to localStorage
-    const savedSettings = localStorage.getItem("userSettings");
+    const savedSettings = localStorage.getItem('userSettings');
     if (savedSettings) {
       const settings = JSON.parse(savedSettings);
-      settings.theme = systemPrefersDark ? "dark" : "light";
-      localStorage.setItem("userSettings", JSON.stringify(settings));
+      settings.theme = systemPrefersDark ? 'dark' : 'light';
+      localStorage.setItem('userSettings', JSON.stringify(settings));
     } else {
       // If no settings exist yet, create them with default values
       const defaultSettings = {
-        username: username || "User",
-        theme: systemPrefersDark ? "dark" : "light",
+        username: username || 'User',
+        theme: systemPrefersDark ? 'dark' : 'light',
         avatar: avatar,
       };
-      localStorage.setItem("userSettings", JSON.stringify(defaultSettings));
+      localStorage.setItem('userSettings', JSON.stringify(defaultSettings));
     }
   };
 
@@ -142,10 +142,10 @@ export const AppProvider = ({ children }) => {
 
   const handleResetFields = () => {
     setIsEditingMode(false);
-    setEditingPostId("");
-    setPostTitle("");
-    setPostDescription("");
-    setPostDateTime("");
+    setEditingPostId('');
+    setPostTitle('');
+    setPostDescription('');
+    setPostDateTime('');
     setPostImage(null);
   };
 
@@ -156,23 +156,29 @@ export const AppProvider = ({ children }) => {
       title: postTitle,
       description: postDescription,
       scheduled_at: postDateTime,
-      image_file: postImage,
+      imageFile: postImage,
+      updated_at: new Date(),
     };
 
     if (
-      postTitle === "" ||
-      postDescription === "" ||
-      postDateTime === "" ||
+      postTitle === '' ||
+      postDescription === '' ||
+      postDateTime === '' ||
       postImage === null
     ) {
-      alert("Please fill up all the input fields");
+      alert('Please fill up all the input fields');
       return;
     }
 
-    await createSchedule(postData);
-    setPosts((prevPosts) => [...prevPosts, postData]);
-    handleClosePopup();
-    handleResetFields();
+    try {
+      const createdPost = await createSchedule(postData);
+      setPosts((prevPosts) => [...prevPosts, createdPost[0]]);
+      handleClosePopup();
+      handleResetFields();
+    } catch (error) {
+      console.error('Failed to create post:', error);
+      alert('Failed to create post. Please try again.');
+    }
   };
 
   const handleUpdatePost = async () => {
@@ -181,12 +187,22 @@ export const AppProvider = ({ children }) => {
       title: postTitle,
       description: postDescription,
       scheduled_at: postDateTime,
-      image_file: postImage,
+      imageFile: postImage,
     };
 
-    await updateSchedule(editingPostId, newPostData);
-    handleClosePopup();
-    handleResetFields();
+    try {
+      const updatedPost = await updateSchedule(editingPostId, newPostData);
+      setPosts((prevPosts) =>
+        prevPosts.map((post) =>
+          post.post_id === editingPostId ? updatedPost[0] : post
+        )
+      );
+      handleClosePopup();
+      handleResetFields();
+    } catch (error) {
+      console.error('Failed to update post:', error);
+      alert('Failed to update post. Please try again.');
+    }
   };
 
   const handleDeletePost = async (id) => {
@@ -194,7 +210,7 @@ export const AppProvider = ({ children }) => {
       await deleteSchedule(id); // delete from Supabase
       setPosts((prevPosts) => prevPosts.filter((post) => post.post_id !== id)); // update UI
     } catch (error) {
-      console.error("Failed to delete post from Supabase:", error.message);
+      console.error('Failed to delete post from Supabase:', error.message);
     }
   };
 
@@ -240,7 +256,7 @@ export const useAppState = () => {
   const context = useContext(AppContext);
 
   if (!context) {
-    throw new Error("useAppState must use within an AppProvider");
+    throw new Error('useAppState must use within an AppProvider');
   }
 
   return context;
