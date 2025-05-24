@@ -12,8 +12,8 @@ const PostImage = () => {
       const imageName = image.name;
       setFilename(imageName);
 
-      const tempUrl = URL.createObjectURL(image);
-      setPostImage(tempUrl);
+      URL.createObjectURL(image);
+      setPostImage(image); // Store the actual file object
     }
   };
 
@@ -30,7 +30,7 @@ const PostImage = () => {
         htmlFor="post-image"
         className={`bg-light ${
           isDarkMode ? 'bg-navy text-white' : 'bg-light text-navy'
-        } py-2 px-6 rounded-md border border-blueberry/40 active:border-blueberry hover:border-blueberry duration-200 cursor-pointer`}
+        } py-2 px-6 rounded-md border border-blueberry/40 active:border-blueberry hover:border-blueberry duration-200 cursor-pointer max-w-full text-nowrap overflow-x-auto`}
       >
         {filename}
       </label>
@@ -40,6 +40,7 @@ const PostImage = () => {
         onChange={handleImageChange}
         accept="image/*"
         className="hidden"
+        required
       />
     </div>
   );

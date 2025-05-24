@@ -1,10 +1,20 @@
 import { useAppState } from '../../../context/AppContext';
+import { deleteAllScheduled } from '../../../supabase/SupabaseScheduleService';
 
 const commonStyles =
   'w-32 rounded-md border duration-200 py-1 lg:py-2 text-small font-medium cursor-pointer';
 
 const ActionNav = () => {
-  const { isDarkMode, handleOpenPopup } = useAppState();
+  const { isDarkMode, handleOpenPopup, setPosts } = useAppState();
+
+  const handleDeleteAll = async () => {
+    try {
+      await deleteAllScheduled();
+      setPosts([]); // Update the local state to reflect the deletion
+    } catch (error) {
+      console.error('Failed to delete all posts:', error);
+    }
+  };
 
   return (
     <div
@@ -14,6 +24,7 @@ const ActionNav = () => {
     >
       <button
         className={`${commonStyles} border-blueberry text-blueberry hover:bg-light`}
+        onClick={handleDeleteAll}
       >
         Clear posts
       </button>

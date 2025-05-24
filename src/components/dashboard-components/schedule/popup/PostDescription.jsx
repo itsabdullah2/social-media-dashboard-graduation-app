@@ -25,6 +25,7 @@ const PostDescription = () => {
           isDarkMode ? 'bg-navy text-white' : 'bg-light text-navy'
         } py-2 px-3 rounded-md focus:outline-none focus:placeholder:opacity-0 placeholder:duration-200 border border-blueberry/40 focus:border-blueberry resize-none h-[9.375rem]`}
         placeholder="Enter description"
+        required
       />
     </div>
   );
