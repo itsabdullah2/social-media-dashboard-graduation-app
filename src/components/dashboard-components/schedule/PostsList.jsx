@@ -1,9 +1,9 @@
-import { useAppState } from "../../../context/AppContext";
-import Post from "./Post";
-import socialMedia from "../../../assets/social-media.png";
+import { useAppState } from '../../../context/AppContext';
+import Post from './Post';
+import socialMedia from '../../../assets/social-media.png';
 
 const PostsList = () => {
-  const { posts, isDarkMode } = useAppState();
+  const { posts } = useAppState();
 
   return (
     <div className="relative w-full h-full">
