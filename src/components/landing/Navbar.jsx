@@ -15,8 +15,6 @@ const Navbar = () => {
 
   const authenticatedUsername = user?.user_metadata?.username;
 
-  console.log(user);
-
   const navItems = [
     {
       label: 'Features',
