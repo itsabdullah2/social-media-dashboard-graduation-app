@@ -47,7 +47,9 @@ const Post = ({ post }) => {
         </Link>
         <div className="flex items-center gap-5">
           <button
-            className={`cursor-pointer text-gray-400`}
+            className={`cursor-pointer text-gray-400 ${
+              isDarkMode ? 'hover:text-white' : 'hover:text-navy'
+            } duration-200`}
             onClick={() => {
               handleOpenPopup();
               handleEditPost(post);
@@ -56,7 +58,9 @@ const Post = ({ post }) => {
             <MdEdit size={25} />
           </button>
           <button
-            className={`cursor-pointer text-gray-400`}
+            className={`cursor-pointer text-gray-400 ${
+              isDarkMode ? 'hover:text-white' : 'hover:text-navy'
+            } duration-200`}
             onClick={() => handleDeletePost(post?.post_id)}
           >
             <MdDelete size={25} />
